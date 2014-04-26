@@ -5,6 +5,8 @@ import android.app.Activity;
 import android.view.Menu;
 
 public class MainActivity extends Activity {
+	
+	public final static String EXTRA_MESSAGE = "com.example.personalhealth.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
