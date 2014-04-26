@@ -27,4 +27,5 @@ proguard/
 #Log Files
 *.log
 
-
+#metadata
+.metadata
