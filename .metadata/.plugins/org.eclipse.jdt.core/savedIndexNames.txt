@@ -1,3 +1,0 @@
-INDEX VERSION 1.126+C:\Users\Jay\Documents\Health Repository\.metadata\.plugins\org.eclipse.jdt.core
-1435076539.index
-2427203137.index
