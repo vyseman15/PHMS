@@ -38,6 +38,13 @@ public class MainPage extends ActionBarActivity {
 		startActivity(view_diet_information_intent);
 		finish();
 	}
+	
+    /** Called when the user clicks the Storage button */
+    public void gotoStorage(View view) {
+    	Intent intent = new Intent(this, DisplayStorageActivity.class);
+    	startActivity(intent);
+    	finish();
+    }
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
