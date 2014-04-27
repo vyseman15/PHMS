@@ -43,7 +43,6 @@ public class MainPage extends ActionBarActivity {
     public void gotoStorage(View view) {
     	Intent intent = new Intent(this, DisplayStorageActivity.class);
     	startActivity(intent);
-    	finish();
     }
 
 	@Override

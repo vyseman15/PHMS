@@ -20,9 +20,9 @@
     <string name="button_store">Storage</string>
 
 
-	<string name="Storage">Storage\t</string>
-	<string name="Contacts">Contacts\t</string>
-	<string name="Diet">Diet\t</string>
+	<string name="Storage">Storage</string>
+	<string name="Contacts">Contacts</string>
+	<string name="Diet">Diet</string>
     
     
     <!-- Strings related to all login and diet stuff -->
