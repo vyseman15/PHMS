@@ -11,6 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Main_Page" />
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -21,29 +22,45 @@
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/view_user_information"
-        android:onClick="view_user_data"  />
+        android:onClick="view_user_data"
+        android:text="@string/view_user_information" />
+
     <Button
         android:id="@+id/view_diet_information_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/view_diet_information"
-        android:onClick="view_diet_info"  />
+        android:onClick="view_diet_info"
+        android:text="@string/view_diet_information" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:background="@drawable/storage_icon"
+        android:contentDescription="@string/abc_searchview_description_search"
+        android:src="@drawable/abc_ab_bottom_transparent_dark_holo" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:background="@drawable/contacts_icon" 
+        android:contentDescription="@string/abc_searchview_description_search"
+        android:src="@drawable/abc_ab_bottom_transparent_dark_holo" />
 
     <ImageButton
         android:id="@+id/imageButton1"
-        android:layout_width="38dp"
-        android:layout_height="36dp"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:background="@drawable/pills3"
         android:contentDescription="@string/abc_searchview_description_search"
-        android:onClick="view_diet_info"
-        android:src="@drawable/green_check_box" />
+        android:src="@drawable/abc_ab_bottom_transparent_dark_holo" />
 
     <Button
         android:id="@+id/sign_out_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sign_out"
-        android:onClick="sign_out_user"  />
-     
+        android:onClick="sign_out_user"
+        android:text="@string/sign_out" />
 
 </LinearLayout>
