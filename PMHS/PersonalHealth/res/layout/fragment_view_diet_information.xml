@@ -1,49 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-<LinearLayout 
     android:id="@+id/linearLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
-
+    android:orientation="vertical">
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    style="@android:style/ButtonBar">
     <TextView
        	android:id="@+id/Username_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Username" />
-    <TextView
-       	android:id="@+id/Date_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Date" />
-    <TextView
-       	android:id="@+id/Weight_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Weight" />
-    <TextView
-       	android:id="@+id/Calories_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Calories" />
-    <TextView
-       	android:id="@+id/BMI_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/BMI" />
-    <TextView
-       	android:id="@+id/Workout_Plan_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Workout_Plan" />
-    <TextView
-       	android:id="@+id/Calories_Burned_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Calories_Burned" />
     <Button
         android:id="@+id/main_page_button"
         android:layout_width="wrap_content"
@@ -56,8 +27,14 @@
         android:layout_height="wrap_content"
         android:onClick="update_diet_information"
         android:text="@string/update_diet_information" />
+	</LinearLayout>
+    <ListView 
+        android:id = "@+id/listview1"
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content">
+    </ListView>
     
-</LinearLayout>
-</ScrollView>
+
+</LinearLayout>   
 
 
