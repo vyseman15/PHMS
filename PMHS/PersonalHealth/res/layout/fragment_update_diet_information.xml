@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+	<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    
+    	<EditText
+        android:id="@+id/Weight_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/Weight1" >
+    	</EditText>
+    	<EditText
+        android:id="@+id/Calories_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/Calories" >
+    	</EditText>
+    	<EditText
+        android:id="@+id/BMI_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/BMI" >
+    	</EditText>
+    	<EditText
+        android:id="@+id/Workout_Plan_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/Workout_Plan" >
+    	</EditText>
+    	<EditText
+        android:id="@+id/Calories_Burned_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/Calories_Burned" >
+    	</EditText>
+		<Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="save_user_diet_data"
+        android:text="@string/save_user_input_data" />
+
+	</LinearLayout>
+</ScrollView>

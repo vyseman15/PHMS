@@ -19,6 +19,81 @@
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_display_message">My Message</string>
 
+    
+    
+    <!-- Strings related to all login and diet stuff -->
+    
+    <string name="title_activity_login">Med App</string>
+
+    <!-- Strings related to Login -->
+    <string name="username">Username</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in_register">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_forgot_password">Recover lost password</string>
+    <string name="login_progress_signing_in">Signing in&#8230;</string>
+    <string name="error_invalid_username">This username is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="button_send">Register</string>
+    <string name="app_name">MedicalInfoApp</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_register">Register</string>
+    <string name="Register_new_user">Fill in all boxes</string>
+    <string name="prompt_password_check">Password</string>
+
+    <!-- Strings related to Register and Update User Information -->
+    <string name="save_user_register_data">Complete</string>
+    <string name="title_activity_main_page">MainPage</string>
+    <string name="update_user_information">Update User Information</string>
+    <string name="save_user_input_data">Save</string>
+    <string name="First_Name">First Name</string>
+    <string name="Last_Name">Last Name</string>
+    <string name="Email_Address">Email</string>
+    <string name="Height_Feet">Height in Feet</string>
+    <string name="Height_Inches">Height in Inches</string>
+    <string name="Weight1">Weight</string>
+    <string name="Age">Age</string>
+    <string name="Gender">Gender</string>
+    <string name="Street_Name">Street Name</string>
+    <string name="City">"City"</string>
+    <string name="State">State</string>
+    <string name="Zipcode">Zipcode</string>
+    <string name="Doctor_Name">"Doctor Name"</string>
+    <string name="Doctor_Email">"Doctor Email"</string>
+    <string name="Doctor_Phone">"Doctor Phone"</string>
+    <string name="Guest_Password">"Guest Password"</string>
+
+    <!-- Strings related to MainPage -->
+    <string name="Main_Page">Main Page</string>
+    <string name="view_user_information">View User Information</string>
+    <string name="title_activity_user_information">UserInformation</string>
+    <string name="sign_out">Sign Out</string>
+
+    <!-- Strings related to UserInformation -->
+    <string name="User_Information">User Information</string>
+    <string name="button_update_user_information">Update User Information</string>
+    <string name="title_activity_update_user_information">UpdateUserInformation</string>
+    <string name="userame_display">Username:</string>
+
+    <!-- Strings related to UserInformation -->
+    <string name="title_activity_view_diet_information">ViewDietInformation</string>
+    <string name="view_diet_information">View Diet Information</string>
+    <string name="main_page">Main Page</string>
+    <string name="update_diet_information">Update Diet Information</string>
+    <string name="title_activity_update_diet_information">UpdateDietInformation</string>
+    
+    <!-- Strings related to ViewDietInformation -->
+    <string name="Username">Username</string>
+    <string name="Date">Date</string>
+    <string name="Weight">Weight</string>
+    <string name="Calories">Calories</string>
+    <string name="BMI">BMI</string>
+    <string name="Workout_Plan">Workout     Plan</string>
+    <string name="Calories_Burned">Calories Burned</string>
 
 
 </resources>
