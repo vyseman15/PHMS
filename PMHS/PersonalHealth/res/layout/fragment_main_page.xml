@@ -57,7 +57,7 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="sign_out_user"
+        android:onClick="gotoStorage"
         android:text="@string/button_store" />
 
 </LinearLayout>
