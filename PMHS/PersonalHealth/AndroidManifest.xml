@@ -115,6 +115,46 @@
             android:name="com.example.personalhealth.New_Medication_2"
             android:label="@string/title_activity_new__medication_2" >
         </activity>
+        <activity
+            android:name="com.example.personalhealth.View_Vital_Signs"
+            android:label="@string/title_activity_view__vital__signs" >
+        </activity>
+        <activity
+            android:name="com.example.personalhealth.Vitals_Screen"
+            android:label="@string/title_activity_vitals__screen" >
+        </activity>
+        <activity
+            android:name="com.example.personalhealth.Vitals_Check_Screen"
+            android:label="@string/title_activity_vitals__check__screen" >
+        </activity>
+        <activity
+            android:name="com.example.personalhealth.Bad_New_Vitals"
+            android:label="@string/title_activity_bad__new__vitals" >
+        </activity>
+        <activity
+            android:name="com.example.personalhealth.Current_Medication"
+            android:label="@string/title_activity_current__medication" >
+        </activity>
+        <activity
+            android:name="com.example.personalhealth.Medication_Screen"
+            android:label="@string/title_activity_medication__screen" >
+        </activity>
+        <activity
+            android:name="com.example.personalhealth.New_Vitals"
+            android:label="@string/title_activity_new__vitals" >
+        </activity>
+        <activity
+            android:name="com.example.personalhealth.New_Medication_3"
+            android:label="@string/title_activity_new__medication_3" >
+        </activity>
+        <activity
+            android:name="com.example.personalhealth.New_Medication_Checker"
+            android:label="@string/title_activity_new__medication__checker" >
+        </activity>
+        <activity
+            android:name="com.example.personalhealth.New_Medication"
+            android:label="@string/title_activity_new__medication" >
+        </activity>
     </application>
 
 </manifest>

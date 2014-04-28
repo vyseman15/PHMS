@@ -102,5 +102,15 @@
     <string name="Workout_Plan">Workout     Plan</string>
     <string name="Calories_Burned">Calories Burned</string>
     <string name="title_activity_new__medication_2">New_Medication_2</string>
+    <string name="title_activity_view__vital__signs">View_Vital_Signs</string>
+    <string name="title_activity_vitals__screen">Vitals_Screen</string>
+    <string name="title_activity_vitals__check__screen">Vitals_Check_Screen</string>
+    <string name="title_activity_bad__new__vitals">Bad_New_Vitals</string>
+    <string name="title_activity_current__medication">Current_Medication</string>
+    <string name="title_activity_medication__screen">Medication_Screen</string>
+    <string name="title_activity_new__vitals">New_Vitals</string>
+    <string name="title_activity_new__medication_3">New_Medication_3</string>
+    <string name="title_activity_new__medication__checker">New_Medication_Checker</string>
+    <string name="title_activity_new__medication">New_Medication</string>
 
 </resources>
