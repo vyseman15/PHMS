@@ -8,53 +8,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".DisplayStorageActivity" >
 
-    <TableLayout
-        android:id="@+id/tableLayout1"
+    <Button
+        android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp" >
-
-        <TableRow
-            android:id="@+id/tableRow1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <ExpandableListView
-                android:id="@+id/expandableListView1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-            </ExpandableListView>
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <ExpandableListView
-                android:id="@+id/expandableListView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-            </ExpandableListView>
-
-        </TableRow>
-
-        <TableRow
-            android:id="@+id/tableRow3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <ExpandableListView
-                android:id="@+id/expandableListView3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-            </ExpandableListView>
-
-        </TableRow>
-    </TableLayout>
-
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/button_create" />
 
 </RelativeLayout>

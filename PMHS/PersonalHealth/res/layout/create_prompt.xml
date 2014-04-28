@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    		android:id="@+id/ScrollView01" 
+            android:layout_width="fill_parent" 
+            android:layout_height="fill_parent" 
+            xmlns:android="http://schemas.android.com/apk/res/android">
+            
+	<LinearLayout 
+	    android:id="@+id/layout_root"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="vertical"
+	    android:padding="10dp" >
+	    <EditText
+	        android:id="@+id/userInputName"
+	        android:layout_width="match_parent"
+	        android:inputType="text"
+	        android:hint="@string/edit_name"
+	        android:layout_height="wrap_content" >
+	        <requestFocus />
+	    </EditText>
+	
+	    <EditText
+	        android:id="@+id/userInputUrl"
+	        android:layout_width="match_parent"
+	        android:inputType="text"
+	        android:hint="@string/edit_url"
+	        android:layout_height="wrap_content" >
+	        
+	        
+	        
+	
+	    </EditText>
+	
+	</LinearLayout>
+</ScrollView>

@@ -191,7 +191,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 + KEY_TYPE_NAME + " = '" + type_name + "'" + " AND ty." + KEY_ID
                 + " = " + "sy." + KEY_TYPE_ID + " AND st." + KEY_ID + " = "
                 + "sy." + KEY_STORAGE_ID;
-     
+     //SELECT * FROM storage st, type ty, storage_type sy WHERE ty. 
+        //type_name ='Recipes' AND ty. id = sy. id AND st. id = sy. id
+        
+     //SELECT * FROM storage st, type ty, storage_type sy WHERE ty. 
+        //type_name ='Articles' AND ty. id = sy. id AND st. id = sy. id   
+        
         Log.e(LOG, selectQuery);
      
         SQLiteDatabase db = this.getReadableDatabase();
