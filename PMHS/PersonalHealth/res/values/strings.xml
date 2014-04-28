@@ -17,9 +17,18 @@
     <string name="action_web_search">Web Search</string>
 
     <string name="button_search">Search</string>
+    
+    <!-- Strings related to storage -->
     <string name="button_store">Storage</string>
+    <string name="button_create">Create</string>
+	<string name="tv_label">Add a diet, article, or recipe : </string>
+	<string name="edit_name">Enter Name</string>
+	<string name="edit_url">Enter URL</string>
+	<string name="radio_diet">Diet</string>
+	<string name="radio_article">Article</string>
+	<string name="radio_recipe">Recipe</string>
 
-
+	<!-- Strings related to main menu -->
 	<string name="Storage">Storage</string>
 	<string name="Contacts">Contacts</string>
 	<string name="Diet">Diet</string>
