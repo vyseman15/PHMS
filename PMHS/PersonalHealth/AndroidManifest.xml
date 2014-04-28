@@ -122,6 +122,9 @@
         <activity
             android:name="com.example.personalhealth.Vitals_Screen"
             android:label="@string/title_activity_vitals__screen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.example.personalhealth.Vitals_Check_Screen"
@@ -138,6 +141,9 @@
         <activity
             android:name="com.example.personalhealth.Medication_Screen"
             android:label="@string/title_activity_medication__screen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.example.personalhealth.New_Vitals"
