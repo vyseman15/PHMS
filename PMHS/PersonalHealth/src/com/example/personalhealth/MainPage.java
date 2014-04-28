@@ -42,6 +42,7 @@ public class MainPage extends ActionBarActivity {
     /** Called when the user clicks the Storage button */
     public void gotoStorage(View view) {
     	Intent intent = new Intent(this, DisplayStorageActivity.class);
+		//username = intent.getStringExtra(Login.EXTRA_MESSAGE);
     	startActivity(intent);
     }
 

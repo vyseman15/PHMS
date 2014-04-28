@@ -7,6 +7,7 @@ public class Storage {
     String url;
     int status;
     String created_at;
+    //String
  
     // constructors
     public Storage() {
