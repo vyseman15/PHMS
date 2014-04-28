@@ -55,5 +55,15 @@ public class MainPage extends ActionBarActivity {
 		TextView text = (TextView)findViewById(R.id.textView2);
 		text.setText("Username: "+username);
 	}
+	public void Go_To_Vitals(View view)
+	{
+		Intent intent = new Intent(this, Vitals_Screen.class);
+		startActivity(intent);
+	}
+	public void Go_To_Medication(View view)
+	{
+		Intent intent = new Intent(this, Medication_Screen.class);
+		startActivity(intent);
+	}
 }
 
