@@ -143,7 +143,7 @@ public class DisplayStorageActivity extends Activity {
 				final CharSequence[] items = { "Recipe", "Diet", "Article" };
 				alertDialogBuilder
 						.setTitle("Create Diet, Article, or Recipe")
-						.setSingleChoiceItems(items, -1,new DialogInterface.OnClickListener() {
+						.setSingleChoiceItems(items, 0,new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int item) {
 		                        //Toast.makeText(getApplicationContext(), items[item],
 		                        //      Toast.LENGTH_SHORT).show();
