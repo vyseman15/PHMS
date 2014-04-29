@@ -34,7 +34,7 @@
         android:layout_marginTop="28dp"
         android:text="Current Medication"
         android:onClick="Go_To_Checker" />
-
+<!--
     <Button
         android:id="@+id/MedToMain"
         android:layout_width="wrap_content"
@@ -43,5 +43,6 @@
         android:layout_marginTop="28dp"
         android:onClick="Go_To_Main"
         android:text="Main Menu" />
+-->
 
 </LinearLayout>

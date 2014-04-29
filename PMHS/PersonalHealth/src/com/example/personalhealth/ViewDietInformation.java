@@ -10,7 +10,10 @@ import java.util.Locale;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -24,7 +27,7 @@ public class ViewDietInformation extends ActionBarActivity {
 	String Username;
 	
 	
-	
+	/*
 	public void main_page_click(View view){
 		//This will bring you back to sign in page
 		Intent go_to_main_page_intent = new Intent(this, MainPage.class);
@@ -32,7 +35,7 @@ public class ViewDietInformation extends ActionBarActivity {
 		startActivity(go_to_main_page_intent);
 		finish();
 	}
-	
+*/	
 	public void update_diet_information(View view){
 		//This will bring you back to sign in page
 		Intent go_to_main_page_intent = new Intent(this, UpdateDietInformation.class);
@@ -106,6 +109,7 @@ public class ViewDietInformation extends ActionBarActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		//gets the username from the main page
 		Intent intent = getIntent();
 		Username = intent.getStringExtra(MainPage.EXTRA_MESSAGE);
@@ -138,6 +142,30 @@ public class ViewDietInformation extends ActionBarActivity {
 	    }
 
 	  }
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.medication__screen, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// This ID represents the Home or Up button. In the case of this
+			// activity, the Up button is shown. Use NavUtils to allow users
+			// to navigate up one level in the application structure. For
+			// more details, see the Navigation pattern on Android Design:
+			//
+			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
+			//
+			NavUtils.navigateUpFromSameTask(this);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 }
 		
 		

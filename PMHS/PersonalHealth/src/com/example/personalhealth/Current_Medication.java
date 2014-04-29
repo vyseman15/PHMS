@@ -54,7 +54,7 @@ public class Current_Medication extends Activity {
 	      listMeds.add(dataall[i]);
 	    }
 	    final StableArrayAdapter adapter = new StableArrayAdapter(this,
-	        android.R.layout.simple_list_item_2, listMeds);
+	        android.R.layout.simple_list_item_1, listMeds);
 	    listviewMeds.setAdapter(adapter);
 	}
 

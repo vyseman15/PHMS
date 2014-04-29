@@ -78,10 +78,10 @@
         <activity
             android:name="com.example.personalhealth.UserInformation"
             android:label="@string/title_activity_user_information"
-            android:parentActivityName="com.example.personalhealth.MainPage" >
+            android:parentActivityName="com.example.personalhealth.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.personalhealth.MainPage" />
+                android:value="com.example.personalhealth.MainActivity" />
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -96,10 +96,10 @@
         </activity>
         <activity
             android:name="com.example.personalhealth.ViewDietInformation"
-            android:parentActivityName="com.example.personalhealth.MainPage" >
+            android:parentActivityName="com.example.personalhealth.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.personalhealth.MainPage" />
+                android:value="com.example.personalhealth.MainActivity" />
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -107,10 +107,11 @@
         </activity>
         <activity
             android:name="com.example.personalhealth.UpdateDietInformation"
-            android:label="@string/title_activity_update_diet_information" >
+            android:label="@string/title_activity_update_diet_information" 
+            android:parentActivityName="com.example.personalhealth.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.personalhealth.ViewDietInformation" />
+                android:value="com.example.personalhealth.MainActivity" />
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -15,12 +15,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Username" />
+    <!-- 
     <Button
         android:id="@+id/main_page_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="main_page_click"
         android:text="@string/main_page" />
+    -->
     <Button
         android:id="@+id/update_diet_information_button"
         android:layout_width="wrap_content"
