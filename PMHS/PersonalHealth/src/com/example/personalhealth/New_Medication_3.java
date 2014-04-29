@@ -2,7 +2,7 @@ package com.example.personalhealth;
 
 
 
-import com.example.personalhealth.Main_Menu_Screen;
+import com.example.personalhealth.MainPage;
 import com.example.personalhealth.medicationDB.Row;
 
 import android.os.Bundle;
