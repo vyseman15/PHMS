@@ -99,7 +99,7 @@
     <string name="Weight">Weight</string>
     <string name="Calories">Calories</string>
     <string name="BMI">BMI</string>
-    <string name="Workout_Plan">Workout     Plan</string>
+    <string name="Workout_Plan">Workout Plan</string>
     <string name="Calories_Burned">Calories Burned</string>
     <string name="title_activity_new__medication_2">New_Medication_2</string>
     <string name="title_activity_view__vital__signs">View_Vital_Signs</string>
@@ -113,10 +113,19 @@
     <string name="title_activity_new__medication__checker">New_Medication_Checker</string>
     <string name="title_activity_new__medication">New_Medication</string>
     <string name="title_activity_add_new_doctor">AddNewDoctor</string>
-    
-    <!--  Strings related to AddNewDoctor and AddNewAppointment -->
+
+    <!-- Strings related to AddNewDoctor and AddNewAppointment -->
     <string name="add_new_doctor">Add New Doctor</string>
     <string name="add_new_appointment">Add New Appointment</string>
     <string name="Doctor_Type">Doctor Type</string>
+    <string name="title_activity_add_new_appointment">AddNewAppointment</string>
+    <string name="title_activity_view_appointment">ViewAppointment</string>
+    <string name="title_activity_view_doctors">ViewDoctors</string>
+    <string name="appointment_date">Appointment Date</string>
+    <string name="appointment_time">Appointment Time</string>
+    <string name="Edit_Doctor_Information">Edit Doctor Information</string>
+    <string name="Edit_Appointment_Information">Edit Appointment Information</string>
+    <string name="Delete">Delete</string>
+    
 
 </resources>
