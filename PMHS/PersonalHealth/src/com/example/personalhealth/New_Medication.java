@@ -6,13 +6,28 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.widget.EditText;
 
 public class New_Medication extends Activity {
 
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new__medication);
+		
+		EditText editText = (EditText) findViewById(R.id.MedNameOfficial);
+		String message1 = editText.getText().toString();
+		EditText editText2 = (EditText) findViewById(R.id.MedNameOTC);
+		String message2 = editText2.getText().toString();
+		EditText editText3 = (EditText) findViewById(R.id.MedSpecialInstr);
+		String message3 = editText3.getText().toString();
+		
+
+		medicationDB Db = new medicationDB(this);
+		String username="q";
+		Db.createRow(username, message1, message2, null, null, null, message3, null);			
+		
 	}
 
 	@Override
@@ -29,5 +44,6 @@ public class New_Medication extends Activity {
     	startActivity(intent);
     	finish();
     }
-}
 
+
+}

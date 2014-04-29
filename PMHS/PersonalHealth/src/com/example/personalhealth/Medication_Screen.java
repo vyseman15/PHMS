@@ -1,8 +1,9 @@
 package com.example.personalhealth;
 
 
-import com.example.personalhealth.MainPage;
-import com.example.personalhealth.New_Medication;
+
+import com.example.main_screen.Main_Menu_Screen;
+import com.example.main_screen.New_Medication;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -25,7 +26,7 @@ public class Medication_Screen extends Activity {
 	}
 	public void Go_To_Main(View view)
     {
-    	Intent intent = new Intent(this, MainPage.class);
+    	Intent intent = new Intent(this, Main_Menu_Screen.class);
     	startActivity(intent);
     	finish();
     }
@@ -35,4 +36,10 @@ public class Medication_Screen extends Activity {
     	startActivity(intent);
     	finish();
     }
+	public void Go_To_Checker(View view)
+	{
+		Intent intent = new Intent(this, Current_Medication.class);
+		startActivity(intent);
+		finish();
+	}
 }

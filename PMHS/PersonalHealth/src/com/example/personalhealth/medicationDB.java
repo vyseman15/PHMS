@@ -18,7 +18,7 @@ public class medicationDB {
 		public String OTCName;
 		public String TOD;
 		public String TPD;
-		public Integer Dose;
+		public String Dose;
 		public String Special_Instructions;
 		public String Known_Conflicts;
     }
@@ -31,7 +31,7 @@ public class medicationDB {
                     + "OTCName TEXT, "
                     + "TOD TEXT, "
                     + "TPD TEXT, "
-                    + "Dose INTEGER, "
+                    + "Dose TEXT, "
                     + "Special_Instructions TEXT, "
                     + "Known_Conflicts"
                     +");";
@@ -55,7 +55,7 @@ public class medicationDB {
     }
 
     public void createRow(String Username, String PillName, String OTCName,
-            String TOD, String TPD, Integer Dose, String Special_Instructions, String Known_Conflicts) 
+            String TOD, String TPD, String Dose, String Special_Instructions, String Known_Conflicts) 
     {
         ContentValues userValues = new ContentValues();
         userValues.put("Username", Username);
@@ -69,30 +69,20 @@ public class medicationDB {
         db.insert(DATABASE_TABLE, null, userValues);
     }
 
-    public void deleteRow(String Username) {
-        db.delete(DATABASE_TABLE, "Username=" + Username, null);
+    public void deleteRow(Integer place) {
+        db.delete(DATABASE_TABLE, "Place=" + place, null);
     }
-    public int checkExists(String Username) {
+    public int checkExists(Integer place) {
     	int exists=0;
-    	Cursor c = db.rawQuery("SELECT EXISTS(SELECT 1 FROM "+DATABASE_TABLE+" WHERE Username ='"+Username+"')",null);
+    	Cursor c = db.rawQuery("SELECT EXISTS(SELECT 1 FROM "+DATABASE_TABLE+" WHERE Place ='"+place+"')",null);
     	if ((c != null) && (c.moveToFirst())) {
     		exists = c.getInt(0);
     	}
     	return exists;
     }
 
-/*
- * 
-		public String PillName;
-		public String OTCName;
-		public String TOD;
-		public String TPD;
-		public Integer Dose;
-		public String Special_Instructions;
-		public String Known_Conflicts;
- */
     public void updateRow(Integer Place, String Username, String PillName, String OTCName,
-            String TOD, String TPD, Integer Dose, String Special_Instructions, String Known_Conflicts) 
+            String TOD, String TPD, String Dose, String Special_Instructions, String Known_Conflicts) 
     {
         ContentValues userValues = new ContentValues();
         userValues.put("Username", Username);
@@ -117,7 +107,7 @@ public class medicationDB {
             row.OTCName = c.getString(3);
             row.TOD = c.getString(4);
             row.TPD = c.getString(5);
-            row.Dose = c.getInt(6);
+            row.Dose = c.getString(6);
             row.Special_Instructions = c.getString(7);
             row.Known_Conflicts = c.getString(8);
             c.close();
@@ -126,11 +116,21 @@ public class medicationDB {
     }
     public Cursor GetAllRows() {
         try {
-            return db.query(DATABASE_TABLE, new String[] {"Username","BPS","BPD","Cholesterol",
-    				"Temperature","Glucose"}, null, null, null, null, null);
+            return db.query(DATABASE_TABLE, new String[] {"Place","Username","PillName","OTCName","TOD",
+    				"TPD","Dose","Special_Instructions","Known_Conflicts"}, null, null, null, null, null);
         } catch (SQLException e) {
             Log.e("Exception on query", e.toString());
             return null;
         }
+    }
+    public int lastEntry()
+    {
+    	int lastPlace=0;
+    	Cursor c=db.rawQuery("SELECT Place FROM USERDATA ORDER BY Place DESC LIMIT 1", null);
+    	if ((c != null) && (c.moveToFirst())) 
+    	{
+    		lastPlace=c.getInt(0);
+    	}
+    	return lastPlace;
     }
 }

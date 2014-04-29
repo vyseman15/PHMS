@@ -32,7 +32,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="28dp"
-        android:text="Current Medication" />
+        android:text="Current Medication"
+        android:onClick="Go_To_Checker" />
 
     <Button
         android:id="@+id/MedToMain"

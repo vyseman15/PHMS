@@ -29,48 +29,79 @@
         android:text="Dose Size"
         android:textAppearance="?android:attr/textAppearanceSmall" />
     <EditText
-        android:id="@+id/NewMed2Dose"
+        android:id="@+id/MedDosage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="8"
         android:inputType="number" />
 </LinearLayout>
-
-<LinearLayout
+<TextView
+    android:id="@+id/NewMed2TODText"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal" >
+    android:text="Time of Day"
+    android:textAppearance="?android:attr/textAppearanceSmall" />
 
-"
-    <TextView
-        android:id="@+id/NewMed2TODText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Time of Day"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-    
-</LinearLayout>
 
 <CheckBox
-    android:id="@+id/checkBox1"
+    android:id="@+id/CBM"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="@+id/TOD" 
-    android:entries="@+id/TODlist"/>
-
-<LinearLayout
+    android:text="Morning"/>
+<CheckBox
+    android:id="@+id/CBA"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="horizontal" >
+    android:text="Afternoon"/>
+<CheckBox
+    android:id="@+id/CBE"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Evening"/>
 
-"
+
+
     <TextView
         android:id="@+id/NewMed2TPDText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Times per Day"
+        android:text="Day of Week"
         android:textAppearance="?android:attr/textAppearanceSmall" />
-</LinearLayout>
+<CheckBox
+    android:id="@+id/CBMon"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Monday"/>
+<CheckBox
+    android:id="@+id/CBTues"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Tuesday"/>
+<CheckBox
+    android:id="@+id/CBWednes"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Wednesday"/>
+<CheckBox
+    android:id="@+id/CBThurs"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Thursday"/>
+<CheckBox
+    android:id="@+id/CBFri"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Friday"/>
+<CheckBox
+    android:id="@+id/CBSat"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Satday"/>
+<CheckBox
+    android:id="@+id/CBSun"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Sunday"/>    
     <Button
         android:id="@+id/NewMed2ToNewMed3"
         android:layout_width="wrap_content"

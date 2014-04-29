@@ -14,13 +14,24 @@
         android:layout_height="wrap_content"
         android:layout_weight="1">
     </ListView>
-    
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Delete" 
+        android:onClick="ridAll"/>
     <Button
         android:id="@+id/VitalMenuButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Go Back" 
         android:onClick="Go_To_Vital_Screen"/>
-    
+    </LinearLayout>
 
 </LinearLayout>

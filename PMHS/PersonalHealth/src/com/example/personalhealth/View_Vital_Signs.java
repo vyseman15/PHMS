@@ -24,31 +24,30 @@ public class View_Vital_Signs extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view__vital__signs);
 		
-		String username="q";
-		Row userInformation;
+		Row userInformationVitals;
 		userInfoDB2 Db = new userInfoDB2(this);
 		String [] dataall=new String[Db.lastEntry()+1];
-		userInformation = Db.getsingleRow(0);
+		userInformationVitals = Db.getsingleRow(0);
 		for(int i=0;i<Db.lastEntry()+1;i++)
 		{
 			
 			String indivData="";
 		    String dataBreaker="";
 		    
-			userInformation = Db.getsingleRow(i);
+			userInformationVitals = Db.getsingleRow(i);
 			//if(userInformation.Username.equals("q"));
 			
 		    
 		    
-		    dataBreaker=String.valueOf(userInformation.BPS);
+		    dataBreaker=String.valueOf(userInformationVitals.BPS);
 		    indivData=indivData.concat("Blood Pressure Systolic: "+dataBreaker+"\n");
-		    dataBreaker=String.valueOf(userInformation.BPD);
+		    dataBreaker=String.valueOf(userInformationVitals.BPD);
 		    indivData=indivData.concat("Blood Pressure diastolic: "+dataBreaker+"\n");
-		    dataBreaker=String.valueOf(userInformation.Cholesterol);
+		    dataBreaker=String.valueOf(userInformationVitals.Cholesterol);
 		    indivData=indivData.concat("Cholesterol:"+dataBreaker+"\n");
-		    dataBreaker=String.valueOf(userInformation.Glucose);
+		    dataBreaker=String.valueOf(userInformationVitals.Glucose);
 		    indivData=indivData.concat("Glucose:"+dataBreaker+"\n");
-		    dataBreaker=String.valueOf(userInformation.Temperature);
+		    dataBreaker=String.valueOf(userInformationVitals.Temperature);
 		    indivData=indivData.concat("Temperature:"+dataBreaker+"\n");
 
 		    dataall[i]=indivData;
@@ -108,4 +107,12 @@ public class View_Vital_Signs extends Activity {
 	    }
 
 	  }
+	public void ridAll(View view)
+	{
+		userInfoDB2 Db = new userInfoDB2(this);
+		for(int i=0; i<Db.lastEntry()+1;i++)
+		{
+			Db.deleteRow(i);
+		}
+	}
 }
