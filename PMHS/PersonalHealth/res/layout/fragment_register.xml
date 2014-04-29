@@ -140,7 +140,7 @@
         android:inputType="number"
         android:hint="@string/Zipcode" >
     </EditText>
-
+	<!--
     <EditText
         android:id="@+id/Doctor_Name"
         android:layout_width="match_parent"
@@ -165,6 +165,7 @@
         android:inputType="phone"
         android:hint="@string/Doctor_Phone" >
     </EditText>
+    -->
     <Button
         android:id="@+id/save_register_info"
         android:layout_width="wrap_content"

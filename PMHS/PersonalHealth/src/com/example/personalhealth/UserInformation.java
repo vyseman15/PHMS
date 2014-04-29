@@ -87,7 +87,7 @@ public class UserInformation extends ActionBarActivity {
 	    
 	    TextView Zipcode_textview = (TextView)findViewById(R.id.Zipcode_textview);
 	    Zipcode_textview.setText("Zipcode: "+String.valueOf(userInfo.Zipcode));
-	    
+	    /*
 	    TextView Doctor_Name_textview = (TextView)findViewById(R.id.Doctor_Name_textview);
 	    Doctor_Name_textview.setText("Doctor Name: "+userInfo.Doctors_Name);
 	    
@@ -99,7 +99,7 @@ public class UserInformation extends ActionBarActivity {
 	    
 	    TextView Guest_Password_textview = (TextView)findViewById(R.id.Guest_Password_textview);
 	    Guest_Password_textview.setText("Guest Password: "+userInfo.Guest_Password);
-	    
+	    */
 	}
 	
 	@Override

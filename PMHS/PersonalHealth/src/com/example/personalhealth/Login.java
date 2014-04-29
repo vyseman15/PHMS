@@ -20,7 +20,8 @@ import android.os.Build;
 public class Login extends ActionBarActivity {
 
 	public final static String EXTRA_MESSAGE = "medical.app";
-	int count;
+	int count=0;
+	long start_wait_period=0;
 	
 	
 	
@@ -33,7 +34,6 @@ public class Login extends ActionBarActivity {
 	
 	//Transition from Login to Main Page
 	public void sign_in_user(View view){
-		long start_wait_period=0;
 		
 		
 		//Holds login credentials
@@ -58,7 +58,7 @@ public class Login extends ActionBarActivity {
 		}
 		if (count > 4)
 		{
-			if((System.currentTimeMillis()-start_wait_period) > 900000)
+			if((System.currentTimeMillis()-start_wait_period)>=900000)
 			{
 				count = 0;
 				username_text.setError("You can now try to enter a new username and password.");
@@ -106,7 +106,6 @@ public class Login extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_login);
         userInfoDB Db = new userInfoDB(this);
-        count = 0;
         Db.close();
     }
 }
