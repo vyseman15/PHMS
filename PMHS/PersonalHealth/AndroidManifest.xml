@@ -127,10 +127,10 @@
         <activity
             android:name="com.example.personalhealth.Vitals_Screen"
             android:label="@string/title_activity_vitals__screen"
-            android:parentActivityName="com.example.personalhealth.MainPage" >
+            android:parentActivityName="com.example.personalhealth.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.personalhealth.MainPage" />
+                android:value="com.example.personalhealth.MainActivity" />
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -151,10 +151,10 @@
         <activity
             android:name="com.example.personalhealth.Medication_Screen"
             android:label="@string/title_activity_medication__screen"
-            android:parentActivityName="com.example.personalhealth.MainPage" >
+            android:parentActivityName="com.example.personalhealth.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.personalhealth.MainPage" />
+                android:value="com.example.personalhealth.MainActivity" />
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
