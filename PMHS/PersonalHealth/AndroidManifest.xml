@@ -77,7 +77,11 @@
         </activity>
         <activity
             android:name="com.example.personalhealth.UserInformation"
-            android:label="@string/title_activity_user_information" >
+            android:label="@string/title_activity_user_information" 
+            android:parentActivityName="com.example.personalhealth.MainPage" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.personalhealth.MainPage" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -91,10 +95,10 @@
         </activity>
         <activity
             android:name="com.example.personalhealth.ViewDietInformation"
-            android:label="@string/title_activity_view_diet_information" >
+            android:parentActivityName="com.example.personalhealth.MainPage" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.personalhealth.ViewDietInformation" />
+                android:value="com.example.personalhealth.MainPage" />
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -121,7 +125,11 @@
         </activity>
         <activity
             android:name="com.example.personalhealth.Vitals_Screen"
-            android:label="@string/title_activity_vitals__screen" >
+            android:label="@string/title_activity_vitals__screen" 
+            android:parentActivityName="com.example.personalhealth.MainPage" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.personalhealth.MainPage" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -140,7 +148,11 @@
         </activity>
         <activity
             android:name="com.example.personalhealth.Medication_Screen"
-            android:label="@string/title_activity_medication__screen" >
+            android:label="@string/title_activity_medication__screen" 
+            android:parentActivityName="com.example.personalhealth.MainPage" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.personalhealth.MainPage" />
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -160,6 +172,7 @@
         <activity
             android:name="com.example.personalhealth.New_Medication"
             android:label="@string/title_activity_new__medication" >
+
         </activity>
     </application>
 
