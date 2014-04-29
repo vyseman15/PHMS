@@ -169,7 +169,7 @@
             android:name="com.example.personalhealth.New_Medication_Checker"
             android:label="@string/title_activity_new__medication__checker" >
         </activity>
-        <activity
+        <activity 
             android:name="com.example.personalhealth.New_Medication"
             android:label="@string/title_activity_new__medication" >
 
