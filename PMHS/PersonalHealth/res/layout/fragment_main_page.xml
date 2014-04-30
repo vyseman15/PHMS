@@ -52,6 +52,7 @@
             android:layout_centerVertical="true"
             android:background="@drawable/contacts_icon"
             android:contentDescription="@string/abc_searchview_description_search"
+            android:onClick="view_contacts_info"
             android:src="@drawable/abc_ab_bottom_transparent_dark_holo" />
 
     </RelativeLayout>

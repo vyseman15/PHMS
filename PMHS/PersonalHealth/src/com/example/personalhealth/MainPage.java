@@ -39,6 +39,15 @@ public class MainPage extends ActionBarActivity {
 		finish();
 	}
 	
+	public void view_contacts_info(View view)
+	{
+		Intent view_contact_info_intent = new Intent(this,ViewContactsInformation.class);
+		startActivity(view_contact_info_intent);
+		finish();
+		
+		
+	}
+	
     /** Called when the user clicks the Storage button */
     public void gotoStorage(View view) {
     	Intent intent = new Intent(this, DisplayStorageActivity.class);

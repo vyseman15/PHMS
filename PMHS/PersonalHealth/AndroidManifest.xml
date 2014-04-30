@@ -25,6 +25,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.example.personalhealth.ViewContactsInformation"
+            android:label="@string/view_contacts_information"
+            android:parentActivityName="com.example.personalhealth.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.personalhealth.MainActivity" />
+        </activity>
+        <activity
             android:name="com.example.personalhealth.Alarms"
             android:label="@string/title_activity_alarms"
             android:parentActivityName="com.example.personalhealth.MainActivity" >
