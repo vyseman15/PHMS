@@ -63,7 +63,6 @@ public class AddNewDoctor extends Activity {
 		finish();
 	}}}}
 	}
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

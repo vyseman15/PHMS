@@ -9,6 +9,7 @@ import java.util.Locale;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
@@ -47,43 +48,42 @@ public class ViewDietInformation extends ActionBarActivity {
 	//Set all of the user information in the textviews
 		public void get_textviews_for_user_information()
 		{
-			Row dietInfo;
+			String Date,Weight,Calories,BMI,Calories_Burned;
 			
 			setContentView(R.layout.fragment_view_diet_information);
-			UserHealthInfoDB Db = new UserHealthInfoDB(this);
+			UserHealthInfoDB db = new UserHealthInfoDB(this);
 			
-			
-			String [] dataall=new String[7];
-			for(int i=0;i<7;i++)
+			int rowcount;
+			Cursor c;
+			c = db.getHealthRows(Username);
+			rowcount = c.getCount();
+			String [] dataall=new String[rowcount];
+			if ((c != null) && (c.moveToFirst()))
 			{
-				long time = System.currentTimeMillis()-(i*60*60*24*1000);
-				Date day = new Date(time);
-				String date = new SimpleDateFormat("dd-MM-yyyy",Locale.US).format(day);
-				dietInfo = Db.rowNullConstructor();
-				dietInfo.Date = date;
-				if(Db.checkExists(Username, date)==1)
+				for(int i=0;i<rowcount;i++)
 				{
-					dietInfo = Db.getsingleHealthRow(Username, date);
-				}
 				String indivData="";
 			    String dataBreaker="";
 			    
+			    Date = c.getString(c.getColumnIndex("Date"));
+				Weight = c.getString(c.getColumnIndex("Weight"));
+				Calories = c.getString(c.getColumnIndex("Calories"));
+				BMI = c.getString(c.getColumnIndex("BMI"));
+				Calories_Burned = c.getString(c.getColumnIndex("Calories_Burned"));
 				//if(dietInfo.Username.equals("q"));
 				
 			    
-				dataBreaker=String.valueOf(dietInfo.Date);
+				dataBreaker=String.valueOf(Date);
 			    indivData=indivData.concat("Date: "+dataBreaker+"\n");
-			    dataBreaker=String.valueOf(dietInfo.Weight);
+			    dataBreaker=String.valueOf(Weight);
 			    indivData=indivData.concat("Weight: "+dataBreaker+"\n");
-			    dataBreaker=String.valueOf(dietInfo.Calories);
+			    dataBreaker=String.valueOf(Calories);
 			    indivData=indivData.concat("Calories: "+dataBreaker+"\n");
-			    dataBreaker=String.valueOf(dietInfo.BMI);
+			    dataBreaker=String.valueOf(BMI);
 			    indivData=indivData.concat("BMI:"+dataBreaker+"\n");
-			    dataBreaker=String.valueOf(dietInfo.Workout_Plan);
-			    indivData=indivData.concat("Workout Plan:"+dataBreaker+"\n");
-			    dataBreaker=String.valueOf(dietInfo.Calories_Burned);
+			    dataBreaker=String.valueOf(Calories_Burned);
 			    indivData=indivData.concat("Caloires Burned:"+dataBreaker+"\n");
-
+			    c.moveToNext();
 			    dataall[i]=indivData;
 			}
 		    
@@ -101,7 +101,7 @@ public class ViewDietInformation extends ActionBarActivity {
 			//This will put all of the data in the Row class/ userInfo object, which contains a row query, onto the screen in textviews
 			TextView Username_textview = (TextView)findViewById(R.id.Username_id);
 			Username_textview.setText("Username: "+Username);
-			
+			}
 		    
 		}
 	

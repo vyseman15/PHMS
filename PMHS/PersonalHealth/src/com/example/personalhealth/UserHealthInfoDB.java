@@ -99,14 +99,13 @@ public class UserHealthInfoDB{
 
     public void updateDietInfo(
     		String Username, String Date,int Weight, int Calories,
-    		int BMI,int Workout_Plan, int Calories_Burned) {
+    		int BMI, int Calories_Burned) {
         ContentValues userValues = new ContentValues();
         userValues.put("Username", Username);
         userValues.put("Date", Date);
         userValues.put("Weight", Weight);
         userValues.put("Calories", Calories);
         userValues.put("BMI", BMI);
-        userValues.put("Workout_Plan", Workout_Plan);
         userValues.put("Calories_Burned", Calories_Burned);
         db.update(DATABASE_TABLE, userValues, "Username ='"+Username+"'"+" AND "+"Date ='"+Date+"'", null);
     }
@@ -124,6 +123,14 @@ public class UserHealthInfoDB{
         userValues.put("Temperature", Temperature);
         db.update(DATABASE_TABLE, userValues, "Username ='"+Username+"'"+" AND "+"Date ='"+Date+"'", null);
     }
+    public Cursor getHealthRows(String Username){
+    	Cursor c = db.query(DATABASE_TABLE, new String[] {
+                "Username", "Date", "Weight",
+                "Calories","BMI", "Cholesterol",
+                "Glucose", "BPS", "BPD",
+                "Temperature","Calories_Burned"}, "Username ='"+Username+"'", null, null, null, null);
+    	return c;
+    }
     public Row getsingleHealthRow(String Username, String Date) {
         Row row = new Row();
         Cursor c =
@@ -131,7 +138,7 @@ public class UserHealthInfoDB{
                         "Username", "Date", "Weight",
                         "Calories","BMI", "Cholesterol",
                         "Glucose", "BPS", "BPD",
-                        "Temperature","Workout_Plan","Calories_Burned"}, "Username ='"+Username+"'"+" AND "+"Date ='"+Date+"'", null, null, null, null);
+                        "Temperature","Calories_Burned"}, "Username ='"+Username+"'"+" AND "+"Date ='"+Date+"'", null, null, null, null);
         
         if ((c != null) && (c.moveToFirst())) {
             row.Username = c.getString(0);
@@ -144,8 +151,7 @@ public class UserHealthInfoDB{
             row.BPS = c.getInt(7);
             row.BPD = c.getInt(8);
             row.Temperature = c.getInt(9);
-            row.Workout_Plan = c.getInt(10);
-            row.Calories_Burned = c.getInt(11);
+            row.Calories_Burned = c.getInt(10);
             c.close();
         } 
         return row;

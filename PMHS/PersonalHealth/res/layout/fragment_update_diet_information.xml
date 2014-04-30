@@ -8,6 +8,11 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     
+	    <Button 
+	    android:layout_width="wrap_content" 
+	    android:layout_height="wrap_content"
+	    android:text="@string/pick_date" 
+	    android:onClick="showDatePickerDialog" />
     	<EditText
         android:id="@+id/Weight_update"
         android:layout_width="match_parent"
@@ -31,14 +36,6 @@
         android:ems="10"
         android:inputType="number"
         android:hint="@string/BMI" >
-    	</EditText>
-    	<EditText
-        android:id="@+id/Workout_Plan_update"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number"
-        android:hint="@string/Workout_Plan" >
     	</EditText>
     	<EditText
         android:id="@+id/Calories_Burned_update"
