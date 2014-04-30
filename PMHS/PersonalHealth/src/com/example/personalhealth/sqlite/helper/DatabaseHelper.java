@@ -2,10 +2,6 @@ package com.example.personalhealth.sqlite.helper;
 
 
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.nio.channels.FileChannel;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,9 +13,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Environment;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.example.personalhealth.sqlite.model.Storage;
 import com.example.personalhealth.sqlite.model.Type;
@@ -48,9 +42,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_NAME = "name";
     private static final String KEY_URL = "url";
     private static final String KEY_STATUS = "status";
+    private static final String KEY_USER = "userName";
  
     // TYPE Table - column names
-    private static final String KEY_TYPE_NAME = "type_name";
+    public static final String KEY_TYPE_NAME = "type_name";
  
     // STORAGE_TYPE Table - column names
     private static final String KEY_STORAGE_ID = "storage_id";
@@ -59,7 +54,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Table Create Statements
     // STORAGE table create statement
     private static final String CREATE_TABLE_STORAGE = "CREATE TABLE "
-            + TABLE_STORAGE + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME
+            + TABLE_STORAGE + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_USER + " TEXT," + KEY_NAME
             + " TEXT," + KEY_URL + " URL," + KEY_STATUS + " INTEGER," + KEY_CREATED_AT
             + " DATETIME" + ")";
  /*
@@ -114,6 +109,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_NAME, storage.getName());
         values.put(KEY_URL, storage.getUrl());
         values.put(KEY_STATUS, storage.getStatus());
+        values.put(KEY_USER, storage.getUserName());
         values.put(KEY_CREATED_AT, getDateTime());
      
         // insert row
@@ -128,13 +124,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     
     /*
-     * get single storage
+     * get single storage by single username
      */
-    public Storage getStorage(long storage_id) {
+    public Storage getStorage(long storage_id, String userName_Id) {
         SQLiteDatabase db = this.getReadableDatabase();
      
         String selectQuery = "SELECT * FROM " + TABLE_STORAGE + " WHERE "
-                + KEY_ID + " = " + storage_id;
+                + KEY_ID + " = '" + storage_id + "'" + " AND " + KEY_USER + " = '" + userName_Id + "'";
+        
      
         Log.e(LOG, selectQuery);
      
@@ -147,17 +144,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         st.setId(c.getInt(c.getColumnIndex(KEY_ID)));
         st.setName((c.getString(c.getColumnIndex(KEY_NAME))));
         st.setUrl((c.getString(c.getColumnIndex(KEY_URL))));
+        st.setUserName((c.getString(c.getColumnIndex(KEY_USER))));
         st.setCreatedAt(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
      
         return st;
     }
     
     /*
-     * getting all storage
+     * getting all storage by single username
      * */
-    public List<Storage> getAllStorage() {
+    public List<Storage> getAllStorage(String userName_Id) {
         List<Storage> storages = new ArrayList<Storage>();
-        String selectQuery = "SELECT * FROM " + TABLE_STORAGE;
+        String selectQuery = "SELECT * FROM " + TABLE_STORAGE + " WHERE " + KEY_USER + "='" + userName_Id +"'";
      
         Log.e(LOG, selectQuery);
      
@@ -171,6 +169,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 st.setId(c.getInt((c.getColumnIndex(KEY_ID))));
                 st.setName((c.getString(c.getColumnIndex(KEY_NAME))));
                 st.setUrl((c.getString(c.getColumnIndex(KEY_URL))));
+                st.setUserName((c.getString(c.getColumnIndex(KEY_USER))));                
                 st.setCreatedAt(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
      
                 // adding to storage list
@@ -181,21 +180,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     
     /*
-     * getting all storage under single type
+     * getting all storage under single type by single username
      * */
-    public List<Storage> getAllStorageByType(String type_name) {
+    public List<Storage> getAllStorageByType(String type_name, String userName_Id) {
         List<Storage> storages = new ArrayList<Storage>();
 
         String selectQuery = "SELECT * FROM " + TABLE_STORAGE + " st, "
                 + TABLE_TYPE + " ty, " + TABLE_STORAGE_TYPE + " sy WHERE ty."
-                + KEY_TYPE_NAME + " = '" + type_name + "'" + " AND ty." + KEY_ID
-                + " = " + "sy." + KEY_TYPE_ID + " AND st." + KEY_ID + " = "
-                + "sy." + KEY_STORAGE_ID;
-     //SELECT * FROM storage st, type ty, storage_type sy WHERE ty. 
-        //type_name ='Recipes' AND ty. id = sy. id AND st. id = sy. id
-        
-     //SELECT * FROM storage st, type ty, storage_type sy WHERE ty. 
-        //type_name ='Articles' AND ty. id = sy. id AND st. id = sy. id   
+                + KEY_TYPE_NAME + " = '" + type_name + "'" +" AND st."+ KEY_USER +
+                " = '"  + userName_Id + "'" + " AND ty." + KEY_ID + " = " + "sy." + KEY_TYPE_ID + 
+                " AND st." + KEY_ID + " = " + "sy." + KEY_STORAGE_ID;
+ 
+        //SELECT * FROM storage st, type ty, storage_type sy WHERE ty. type_name ='Recipes' 
+        //AND st. userName ='j' AND ty. id = sy. type_id AND st. id = sy. storage_id
         
         Log.e(LOG, selectQuery);
      
@@ -209,6 +206,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 st.setId(c.getInt((c.getColumnIndex(KEY_ID))));
                 st.setName(c.getString(c.getColumnIndex(KEY_NAME)));
                 st.setUrl((c.getString(c.getColumnIndex(KEY_URL))));
+                st.setUserName((c.getString(c.getColumnIndex(KEY_USER))));  
                 st.setCreatedAt(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
      
                 // adding to storages list
@@ -219,11 +217,65 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return storages;
     }
     
-    /**
-     * getting storage count
+    /*
+     * getting all storage under single type by single username String
+     * */
+    public Cursor getAllStorageByTypeCursor(String type_name, String userName_Id) {
+        List<Storage> storages = new ArrayList<Storage>();
+        List<String> strings = new ArrayList<String>();
+        String tester = null;
+        
+        String selectQuery = "SELECT * FROM " + TABLE_STORAGE + " st, "
+                + TABLE_TYPE + " ty, " + TABLE_STORAGE_TYPE + " sy WHERE ty."
+                + KEY_TYPE_NAME + " = '" + type_name + "'" +" AND st."+ KEY_USER +
+                " = '"  + userName_Id + "'" + " AND ty." + KEY_ID + " = " + "sy." + KEY_TYPE_ID + 
+                " AND st." + KEY_ID + " = " + "sy." + KEY_STORAGE_ID;
+ 
+        //SELECT * FROM storage st, type ty, storage_type sy WHERE ty. type_name ='Recipes' 
+        //AND st. userName ='j' AND ty. id = sy. type_id AND st. id = sy. storage_id
+        
+        Log.e(LOG, selectQuery);
+     
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+     
+        // looping through all rows and adding to list
+        //if (c.moveToFirst()) {
+           // do {
+                //Storage st = new Storage();
+                //st.getId();
+                //st.getName();
+                //st.getUrl();
+                //st.getUserName();
+                //tester = (c.getString(c.getColumnIndex(KEY_NAME)));
+               //Log.e("tester is ", tester);
+                //st.getCreatedAt(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+     
+                // adding to storages list
+                //storages.add(st);
+            //} while (c.moveToNext());
+       // }
+        /*
+        for (Storage storage : storages) {
+            strings.add(storage != null ? storage.toString() : null);
+        }
+        String test2;
+        test2 = (String)strings.get(1);
+        */
+        //Log.e("tester is ", tester);
+        		
+        //return storages;
+        //return tester;
+          return c;
+    }
+    
+    /*
+     * getting storage count by single username
      */
-    public int getStorageCount() {
-        String countQuery = "SELECT * FROM " + TABLE_STORAGE;
+    public int getStorageCount(String userName_Id) {
+        String countQuery = "SELECT * FROM " + TABLE_STORAGE + " WHERE " + KEY_USER + "='" + userName_Id + "'";
+        //SELECT * FROM storage WHERE userName =  'j2'
+        //String selectQuery = "SELECT * FROM " + TABLE_STORAGE + "WHERE" + KEY_USER + "='" + userName_Id +"'";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
  
@@ -235,27 +287,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     
     /*
-     * Updating a storage
+     * Updating a storage by username
      */
-    public int updateStorage(Storage storage) {
+    public int updateStorage(Storage storage, String userName_Id) {
         SQLiteDatabase db = this.getWritableDatabase();
      
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, storage.getName());
         values.put(KEY_URL, storage.getUrl());
         values.put(KEY_STATUS, storage.getStatus());
+        values.put(KEY_USER, storage.getUserName());
      
         // updating row
-        return db.update(TABLE_STORAGE, values, KEY_ID + " = ?",
+        return db.update(TABLE_STORAGE, values, (KEY_ID + " = ? " + " AND "+ KEY_USER + " = '" +userName_Id+ "'"),
                 new String[] { String.valueOf(storage.getId()) });
     }
     
     /*
-     * Deleting a storage
+     * Deleting a storage by username
      */
-    public void deleteStorage(long storage_id) {
+    public void deleteStorage(long storage_id, String userName_Id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_STORAGE, KEY_ID + " = ?",
+        deleteStorageType(storage_id);
+        db.delete(TABLE_STORAGE, (KEY_ID + " = ? " + " AND "+ KEY_USER + " = '" +userName_Id+ "'"),
                 new String[] { String.valueOf(storage_id) });
     }
     
@@ -301,6 +355,48 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return types;
     }
     
+    /**
+     * getting single type String
+     * */
+    public String getSingleType(String typeName_Id) {
+        //ArrayList<String> types = new ArrayList<String>();
+    	String type = null;
+        String selectQuery = "SELECT * FROM " + TABLE_TYPE + " WHERE " + KEY_TYPE_NAME + "='" +typeName_Id +"'";
+        //String selectQuery = "SELECT * FROM " + TABLE_STORAGE + "WHERE" + KEY_USER + "='" + userName_Id +"'";
+        //String countQuery = "SELECT * FROM " + TABLE_STORAGE + "WHERE" + KEY_USER + "='" + userName_Id +"'";
+     
+        Log.e(LOG, selectQuery);
+     
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+        if(typeName_Id == "Recipes")
+        {
+        	if (c.move(1))
+        	{
+            type = (c.getString(c.getColumnIndex(KEY_TYPE_NAME)));
+            //Log.e(LOG,type);
+        	}
+        }
+        if(typeName_Id == "Diets")
+        {
+        	if (c.move(2))
+        	{
+            type = (c.getString(c.getColumnIndex(KEY_TYPE_NAME)));
+            //Log.e(LOG,type);
+        	}
+        }
+        if(typeName_Id == "Articles")
+        {
+        	if (c.move(3))
+        	{
+            type = (c.getString(c.getColumnIndex(KEY_TYPE_NAME)));
+            //Log.e(LOG,type);
+        	}
+        }
+
+        return type;
+    }
+    
     /*
      * Updating a type
      */
@@ -318,19 +414,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /*
      * Deleting a type, also deletes storage with same type
      */
-    public void deleteType(Type type, boolean should_delete_all_type_storage) {
+    public void deleteType(Type type, boolean should_delete_all_type_storage, String userName_Id) {
         SQLiteDatabase db = this.getWritableDatabase();
      
         // before deleting type
         // check if storages under this type should also be deleted
         if (should_delete_all_type_storage) {
             // get all storages under this type
-            List<Storage> allTypeStorage = getAllStorageByType(type.getTypeName());
+            List<Storage> allTypeStorage = getAllStorageByType(type.getTypeName(),userName_Id);
      
             // delete all storages
             for (Storage storage : allTypeStorage) {
                 // delete storage
-                deleteStorage(storage.getId());
+                deleteStorage(storage.getId(),storage.getUserName());
             }
         }
      

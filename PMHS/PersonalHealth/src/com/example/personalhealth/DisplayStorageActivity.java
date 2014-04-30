@@ -4,11 +4,14 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.nio.channels.FileChannel;
+import java.util.ArrayList;
 
-import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ExpandableListActivity;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.NavUtils;
@@ -21,24 +24,31 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ExpandableListView;
+import android.widget.ExpandableListView.OnChildClickListener;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.personalhealth.sqlite.helper.DatabaseHelper;
 import com.example.personalhealth.sqlite.model.Storage;
 import com.example.personalhealth.sqlite.model.Type;
 
-public class DisplayStorageActivity extends Activity {
+public class DisplayStorageActivity extends ExpandableListActivity implements
+OnChildClickListener  {
 	
    static long type1_id = 0;
    static long type2_id = 0;
    static long type3_id = 0;
+   String userName;
    //final Context context = getApplicationContext();
 
 	private Button button;
 	//private EditText editTextMainScreen;
 	final Context context = this;
 
+    private ArrayList<String> parentItems = new ArrayList<String>();
+    private ArrayList<Object> childItems = new ArrayList<Object>();
 	
     private static final String DATABASE_NAME = "storageManager";
     // Database Helper
@@ -50,7 +60,14 @@ public class DisplayStorageActivity extends Activity {
 		setContentView(R.layout.activity_display_storage);
 		// Show the Up button in the action bar.
 		setupActionBar();
+		//context.deleteDatabase(DATABASE_NAME);
 		db = new DatabaseHelper(getApplicationContext());
+		
+		Intent intent = getIntent();
+		userName = intent.getStringExtra(Login.EXTRA_MESSAGE);
+		TextView text = (TextView)findViewById(R.id.textView1);
+		text.setText("Username: "+userName);
+		
 		
         // Creating types
         Type type1 = new Type("Recipes");
@@ -66,7 +83,7 @@ public class DisplayStorageActivity extends Activity {
         }
         
         Log.d("Type Count", "Type Count: " + db.getAllType().size());
-        
+        //Log.e("User Name", userName);
         /*
         // Creating storages
         Storage store1 = new Storage("Nikujaga", 0,"hello1");
@@ -148,6 +165,7 @@ public class DisplayStorageActivity extends Activity {
 		                        //Toast.makeText(getApplicationContext(), items[item],
 		                        //      Toast.LENGTH_SHORT).show();
 								type1_id = item + 1;
+								//Toast.makeText(getBaseContext(),"type1_id is" +type1_id, Toast.LENGTH_LONG).show();
 						}
 						})
 						.setCancelable(false)
@@ -157,8 +175,8 @@ public class DisplayStorageActivity extends Activity {
 										//editTextMainScreen.setText(input.getText());
 										String stringName = inputName.getText().toString();
 										String stringUrl = inputUrl.getText().toString();										
-										Storage store1 = new Storage(stringName, 0,stringUrl);
-										
+										Storage store1 = new Storage(stringName, 0,stringUrl,userName);
+								        
 								        long store1_id = db.createStorage(store1, new long[] { type1_id });
 								        
 
@@ -179,19 +197,121 @@ public class DisplayStorageActivity extends Activity {
 			}
 		});
 		
-	
-        
-        
-        
-        
-        dbWrite(DATABASE_NAME);
-        
+		dbWrite(DATABASE_NAME);
+		
+		  ExpandableListView expandbleLis = getExpandableListView();
+		  expandbleLis.setDividerHeight(2);
+		  expandbleLis.setGroupIndicator(null);
+		  expandbleLis.setClickable(true);
+		  
+		  setGroupData();
+		  setChildGroupData();
+		
+		  NewAdapter mNewAdapter = new NewAdapter(groupItem, childItem);
+		  mNewAdapter
+		    .setInflater(
+		      (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE),
+		      this);
+		  getExpandableListView().setAdapter(mNewAdapter);
+		  expandbleLis.setOnChildClickListener(this);
+		 
+		 
         db.closeDB();
-        //context.deleteDatabase(DATABASE_NAME);
+      //context.deleteDatabase(DATABASE_NAME);
       //dbWrite(DATABASE_NAME);
-        
-        
-	}
+    }
+
+
+	 public void setGroupData() {
+	  groupItem.add(db.getSingleType("Recipes"));
+	Toast.makeText(getBaseContext(),"type1 is " +db.getSingleType("Recipes"), Toast.LENGTH_LONG).show();
+	  groupItem.add(db.getSingleType("Diets"));
+	  Toast.makeText(getBaseContext(),"type2id is " +db.getSingleType("Diets"), Toast.LENGTH_LONG).show();
+	  groupItem.add(db.getSingleType("Articles"));
+
+	 }
+
+	 ArrayList<String> groupItem = new ArrayList<String>();
+	 ArrayList<Object> childItem = new ArrayList<Object>();
+	
+	 public void setChildGroupData() {
+			Intent intent = getIntent();
+			userName = intent.getStringExtra(Login.EXTRA_MESSAGE);
+		  /**
+		   * Add Data For Recipes
+		   */
+		  ArrayList<String> child = new ArrayList<String>();
+		  //int recipeSize = db.getStorageCount(userName);
+		  //String test = db.getAllStorageByTypeString("Recipes", userName);
+		  //Log.e("test is", String.valueOf(recipeSize));
+		 // Toast.makeText(getBaseContext(),test,Toast.LENGTH_LONG).show();
+		//Toast.makeText(getBaseContext(),"type1_id is" +type1_id, Toast.LENGTH_LONG).show();
+		  
+		 //for(int i = 0; i < recipeSize; i++)
+		 // {
+			  //child.add(i,db.getAllStorageByTypeString("Recipes", userName).getString(c.getColumnIndex(KEY_NAME)));
+		  Cursor c = db.getAllStorageByTypeCursor("Recipes", userName);
+		  int count = c.getCount();
+		  if((c != null) && (c.moveToFirst()))
+		  {
+			  for(int i = 0; i < count; i++)
+				 {
+			 
+				 child.add(i, c.getString(c.getColumnIndex("name")));
+				 c.moveToNext();
+				 }
+		  }
+		 // }
+		  /*
+	        int elements = new Random().nextInt(100);  
+	        for( int i = 0 ; i < elements ; i++ ) {
+	            list.add( new xClass() );
+	        }
+	       */
+		  /*
+		  child.add(db.getAllStorageByType("Recipes", userName));
+		  child.add("Java");
+		  child.add("Drupal");
+		  child.add(".Net Framework");
+		  child.add("PHP");
+		  */
+		  childItem.add(child);
+
+		  /**
+		   * Add Data For Mobile
+		   */
+		  child = new ArrayList<String>();
+		  child.add("Android");
+		  child.add("Window Mobile");
+		  child.add("iPHone");
+		  child.add("Blackberry");
+		  childItem.add(child);
+		  /**
+		   * Add Data For Manufacture
+		   */
+		  child = new ArrayList<String>();
+		  child.add("HTC");
+		  child.add("Apple");
+		  child.add("Samsung");
+		  child.add("Nokia");
+		  childItem.add(child);
+
+		 }
+	
+
+	 @Override
+	 public boolean onChildClick(ExpandableListView parent, View v,
+	   int groupPosition, int childPosition, long id) {
+	  //Toast.makeText(MainActivity.this, "Clicked On Child",Toast.LENGTH_SHORT).show();
+	  return true;
+	 }
+	
+	
+	
+	
+	
+	
+	
 	
 	public void dbWrite(String DBNAME)
     {
@@ -224,6 +344,7 @@ public class DisplayStorageActivity extends Activity {
 	    }
     }
 
+	
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */
@@ -260,7 +381,29 @@ public class DisplayStorageActivity extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+	/*
+	private void fillDataDiet() {
+		Intent intent = getIntent();
+		userName = intent.getStringExtra(Login.EXTRA_MESSAGE);
+	    mGroupsCursor = DatabaseHelper.getAllStorageByType("Diets", userName);
+	    getActivity().startManagingCursor(mGroupsCursor);
+	    mGroupsCursor.moveToFirst();
+
+	    ExpandableListView elv = (ExpandableListView) getActivity().findViewById(android.R.id.list);
+
+	    mAdapter = new MyExpandableListAdapter(mGroupsCursor, getActivity(),
+	        R.layout.rowlayout_expgroup,                     // Your row layout for a group
+	        R.layout.rowlayout_itemlist_exp,                 // Your row layout for a child
+	        new String[] { "id_room" },                      // Field(s) to use from group cursor
+	        new int[] { android.R.id.room },                 // Widget ids to put group data into
+	        new String[] { "name_device", "state_device" },  // Field(s) to use from child cursors
+	        new int[] { R.id.device, R.id.state });          // Widget ids to put child data into
+
+	        lv.setAdapter(mAdapter);                         // set the list adapter.
+	    }
+	*/
+
+
 }
 
 
