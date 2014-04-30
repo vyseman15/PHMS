@@ -21,28 +21,28 @@ import android.os.Build;
 public class UserInformation extends ActionBarActivity {
 
 	public final static String EXTRA_MESSAGE = "medical.app";
-	String username;
+	String Username;
 	
 	
 	
 	public void view_doctor(View view){
-		//pass username to the UpdateUserInformation class
+		//pass Username to the UpdateUserInformation class
 		Intent view_doctor = new Intent(this, ViewDoctors.class);
-		view_doctor.putExtra(EXTRA_MESSAGE,username);
+		view_doctor.putExtra(EXTRA_MESSAGE,Username);
 		startActivity(view_doctor);
 	}
 	public void view_appointment(View view){
-		//pass username to the UpdateUserInformation class
+		//pass Username to the UpdateUserInformation class
 		Intent view_appointment = new Intent(this, ViewAppointment.class);
-		view_appointment.putExtra(EXTRA_MESSAGE,username);
+		view_appointment.putExtra(EXTRA_MESSAGE,Username);
 		startActivity(view_appointment);
 	}
 	
 	//Transition page from User Information to Update User Information
 	public void update_user_data(View view){
-		//pass username to the UpdateUserInformation class
+		//pass Username to the UpdateUserInformation class
 		Intent update_user_info_intent = new Intent(this, UpdateUserInformation.class);
-		update_user_info_intent.putExtra(EXTRA_MESSAGE,username);
+		update_user_info_intent.putExtra(EXTRA_MESSAGE,Username);
 		startActivity(update_user_info_intent);
 		finish();
 	}
@@ -50,9 +50,9 @@ public class UserInformation extends ActionBarActivity {
 	/*
 	//Transition page from User Information to Main Page
 	public void return_to_main_page(View view){
-		//Pass username to the main page and go to the main page
+		//Pass Username to the main page and go to the main page
 		Intent return_to_main_page_intent = new Intent(this, MainPage.class);
-		return_to_main_page_intent.putExtra(EXTRA_MESSAGE,username);
+		return_to_main_page_intent.putExtra(EXTRA_MESSAGE,Username);
 		startActivity(return_to_main_page_intent);
 		finish();
 	}
@@ -65,7 +65,7 @@ public class UserInformation extends ActionBarActivity {
 		
 		//This will put all of the data in the Row class/ userInfo object, which contains a row query, onto the screen in textviews
 		TextView Username_textview = (TextView)findViewById(R.id.Username_textview);
-		Username_textview.setText("Username: "+username);
+		Username_textview.setText("Username: "+Username);
 
 		TextView Password_textview = (TextView)findViewById(R.id.Password_textview);
 	    Password_textview.setText("Password: "+userInfo.Password);
@@ -124,13 +124,13 @@ public class UserInformation extends ActionBarActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		Row userInformation;
 		super.onCreate(savedInstanceState);
-		//gets the username from the main page
+		//gets the Username from the main page
 		Intent intent = getIntent();
-		username = intent.getStringExtra(MainPage.EXTRA_MESSAGE);
+		Username = intent.getStringExtra(MainPage.EXTRA_MESSAGE);
 		//opens the Database for this class
 		userInfoDB Db = new userInfoDB(this);
 		//assigns userInformation to be equal to row object which contains the data from a single row query
-		userInformation = Db.getsingleRow(username);
+		userInformation = Db.getsingleRow(Username);
 		
 		//function that will put this data on screen so user can see it
 		set_textviews_for_user_information(userInformation);

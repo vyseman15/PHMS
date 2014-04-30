@@ -18,7 +18,7 @@ public class userInfoDB {
         public String First_Name;
         public String Last_Name,Email;
         public String Gender;
-        public String Street_Address, City, State, Doctors_Name, Doctor_Email, Doctor_Type, Appointment_Date;
+        public String Street_Address, City, State, Doctor_Name, Doctor_Email, Doctor_Type, Appointment_Date;
         public String Doctor_Phone;
         public Integer Age, Weight, Height_Feet, Height_Inches, Zipcode;
     }
@@ -109,6 +109,14 @@ public class userInfoDB {
     	}
     	return exists;
     }
+    public Cursor getAppointmentInformation(String Username)
+    {
+    	Cursor c =
+        		db.query(APPOINTMENT_TABLE, new String[] {"Doctor_Name","Appointment_Date","Appointment_Time"},
+        				"Username ='"+Username+"'",null,null,null,null,null);
+    	
+    	return c;
+    }
     
     
     
@@ -143,6 +151,14 @@ public class userInfoDB {
     		exists = c.getInt(0);
     	}
     	return exists;
+    }
+    public Cursor getDoctorInformation(String Username)
+    {
+    	Cursor c =
+        		db.query(DOCTOR_TABLE, new String[] {"Doctor_Name","Doctor_Phone","Doctor_Email","Doctor_Type"},
+        				"Username ='"+Username+"'",null,null,null,null,null);
+    	
+    	return c;
     }
     
     

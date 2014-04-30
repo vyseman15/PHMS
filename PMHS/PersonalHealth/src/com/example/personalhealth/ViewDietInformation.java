@@ -48,7 +48,6 @@ public class ViewDietInformation extends ActionBarActivity {
 		public void get_textviews_for_user_information()
 		{
 			Row dietInfo;
-			long DAY_IN_MS = 1000 * 60 * 60 * 24;
 			
 			setContentView(R.layout.fragment_view_diet_information);
 			UserHealthInfoDB Db = new UserHealthInfoDB(this);
@@ -118,7 +117,7 @@ public class ViewDietInformation extends ActionBarActivity {
 	
 	
 	///This is the adapter for the string of data
-	private class StableArrayAdapter extends ArrayAdapter<String> {
+	public class StableArrayAdapter extends ArrayAdapter<String> {
 
 	    HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
 

@@ -60,7 +60,7 @@ public class AddNewDoctor extends Activity {
 		Intent save_user_doctor_info_intent = new Intent(this, ViewDoctors.class);
 		save_user_doctor_info_intent.putExtra(EXTRA_MESSAGE,Username);
 		startActivity(save_user_doctor_info_intent);
-		
+		finish();
 	}}}}
 	}
 	
