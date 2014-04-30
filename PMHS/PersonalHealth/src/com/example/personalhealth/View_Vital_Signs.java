@@ -118,5 +118,9 @@ public class View_Vital_Signs extends Activity {
 		{
 			Db.deleteRow(i);
 		}
+		Intent intent=new Intent(this,View_Vital_Signs.class);
+		startActivity(intent);
+		finish();
+		
 	}
 }

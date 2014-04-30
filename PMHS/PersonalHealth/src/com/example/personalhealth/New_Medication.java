@@ -17,6 +17,25 @@ public class New_Medication extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new__medication);
 		
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) 
+	{
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.new__medication, menu);
+		return true;
+	}
+	public void Go_To_Next_2(View view)
+    {
+		
+    	Intent intent = new Intent(this, New_Medication_2.class);
+    	startActivity(intent);
+    	finish();
+    }
+	public void Go_To_Checker(View view)
+	{
+
 		EditText editText = (EditText) findViewById(R.id.MedNameOfficial);
 		String message1 = editText.getText().toString();
 		EditText editText2 = (EditText) findViewById(R.id.MedNameOTC);
@@ -156,24 +175,6 @@ public class New_Medication extends Activity {
 		String username="q";
 		Db.createRow(username, message1, message2, message5, message6, message4, message3, message7);			
 		
-	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) 
-	{
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.new__medication, menu);
-		return true;
-	}
-	public void Go_To_Next_2(View view)
-    {
-		
-    	Intent intent = new Intent(this, New_Medication_2.class);
-    	startActivity(intent);
-    	finish();
-    }
-	public void Go_To_Checker(View view)
-	{
 		Intent intent = new Intent(this, New_Medication_Checker.class);
 		startActivity(intent);
 		finish();

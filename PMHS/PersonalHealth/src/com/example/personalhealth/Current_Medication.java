@@ -39,15 +39,22 @@ public class Current_Medication extends Activity {
 			
 		    
 		    
-			indivData=indivData.concat("Pill Name: "+userInformationMeds.PillName+"\n");
-		    indivData=indivData.concat("OTC Name: "+userInformationMeds.OTCName+"\n");
-		    indivData=indivData.concat("Time(s) of day: "+userInformationMeds.TOD+"\n");
-		    indivData=indivData.concat("Day(s) per week: "+userInformationMeds.TPD+"\n");
-		    indivData=indivData.concat("Dosage: "+userInformationMeds.Dose+"\n");
-		    indivData=indivData.concat("Special Instructions: "+userInformationMeds.Special_Instructions+"\n");
-		    indivData=indivData.concat("Known Conflicts: "+userInformationMeds.Known_Conflicts+"\n");
-		    dataallMeds[count]=indivData;
-		    count++;
+			if(userInformationMeds.PillName==null)
+			   {
+				   
+			   }
+			   else
+			   {
+				    indivData=indivData.concat("Pill Name: "+userInformationMeds.PillName+"\n");
+				    indivData=indivData.concat("OTC Name: "+userInformationMeds.OTCName+"\n");
+				    indivData=indivData.concat("Time(s) of day: "+userInformationMeds.TOD+"\n");
+				    indivData=indivData.concat("Day(s) per week: "+userInformationMeds.TPD+"\n");
+				    indivData=indivData.concat("Dosage: "+userInformationMeds.Dose+"\n");
+				    indivData=indivData.concat("Special Instructions: "+userInformationMeds.Special_Instructions+"\n");
+				    indivData=indivData.concat("Known Conflicts: "+userInformationMeds.Known_Conflicts+"\n");
+				    dataallMeds[count]=indivData;
+				    count++;
+			   }
 		}
 	    
 		ListView listviewMeds = (ListView) findViewById(R.id.listviewMeds);
@@ -74,14 +81,7 @@ public class Current_Medication extends Activity {
 		startActivity(intent);
 		finish();
 	}
-	public void ridAll(View view)
-	{
-		medicationDB Db = new medicationDB(this);
-		for(int i=0; i<Db.lastEntry()+1;i++)
-		{
-			Db.deleteRow(i);
-		}
-	}
+	
 
 	private class StableArrayAdapter extends ArrayAdapter<String> {
 
@@ -107,4 +107,15 @@ public class Current_Medication extends Activity {
 	    }
 
 	  }
+	public void ridAll(View view)
+	{
+		medicationDB Db = new medicationDB(this);
+		for(int i=0; i<Db.lastEntry()+1;i++)
+		{
+			Db.deleteRow(i);
+		}
+		Intent intent =new Intent(this,Current_Medication.class);
+		startActivity(intent);
+		finish();
+	}
 }
