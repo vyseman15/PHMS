@@ -31,12 +31,10 @@
     <string name="Medication">Medication</string>
     <string name="User">User</string>
     <string name="Vitals">Vitals</string>
-<<<<<<< HEAD
     
     <string name="view_contacts_information">view_contacts_information</string>
-    
     <!-- Strings related to all login and diet stuff -->
-    
+
     <string name="title_activity_login">Med App</string>
 
     <!-- Strings related to Login -->
@@ -51,10 +49,6 @@
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
     <string name="button_send">Register</string>
-    
-
-
-
     <string name="title_activity_register">Register</string>
     <string name="Register_new_user">Fill in all boxes</string>
     <string name="prompt_password_check">Password</string>
