@@ -185,7 +185,7 @@ public class UpdateUserInformation extends ActionBarActivity {
 			good_Z = false;
 		}}
 		
-		///Get doctors name
+		/*///Get doctors name
 			
 		EditText Doctor_Name_text = (EditText)findViewById(R.id.Doctor_Name);
 		String Doctor_Name = Doctor_Name_text.getText().toString();
@@ -220,7 +220,7 @@ public class UpdateUserInformation extends ActionBarActivity {
 		{
 			Guest_Password = userData.Guest_Password;
 		}
-		
+		*/
 		///Update the row based on new information
 		//Also checks that input for Height feet, height inches, weight, age, and zipcode are valid
 		if((good_H_Ft)&&(good_H_In)&&(good_W)&&(good_A)&&(good_Z))
@@ -229,8 +229,7 @@ public class UpdateUserInformation extends ActionBarActivity {
 				username, Password, First_Name, Last_Name,
 				Email_Address, Street_Name,
 				City, State, Zipcode, Age, Gender, 
-				Weight, Height_Feet, Height_Inches, 
-				Doctor_Name, Doctor_Email, Doctor_Phone, Guest_Password);
+				Weight, Height_Feet, Height_Inches);
 		
 		Intent save_user_info_intent = new Intent(this, UserInformation.class);
 		//pass username to the UserInformation class

@@ -4,28 +4,34 @@
     <string name="app_name">Medical Info App</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_display_message">My Message</string>
-    
     <string name="action_settings">Settings</string>
-
     <string name="title_activity_alarms">Alarms</string>
     <string name="title_activity_display_storage">DisplayStorageActivity</string>
     <string name="title_activity_main">MainActivity</string>
-    
     <string name="edit_message">Enter a message</string>
     <string name="action_search">Search</string>
     <string name="action_advanced_search">Advanced Search</string>
     <string name="action_web_search">Web Search</string>
-
     <string name="button_search">Search</string>
+
+    <!-- Strings related to storage -->
     <string name="button_store">Storage</string>
+    <string name="button_create">Create</string>
+    <string name="tv_label">Add a diet, article, or recipe : </string>
+    <string name="edit_name">Enter Name</string>
+    <string name="edit_url">Enter URL</string>
+    <string name="radio_diet">Diet</string>
+    <string name="radio_article">Article</string>
+    <string name="radio_recipe">Recipe</string>
 
-
-	<string name="Storage">Storage</string>
-	<string name="Contacts">Contacts</string>
-	<string name="Diet">Diet</string>
+    <!-- Strings related to main menu -->
+    <string name="Storage">Storage</string>
+    <string name="Contacts">Contacts</string>
+    <string name="Diet">Diet</string>
     <string name="Medication">Medication</string>
     <string name="User">User</string>
     <string name="Vitals">Vitals</string>
+<<<<<<< HEAD
     
     <string name="view_contacts_information">view_contacts_information</string>
     
@@ -93,15 +99,40 @@
     <string name="main_page">Main Page</string>
     <string name="update_diet_information">Update Diet Information</string>
     <string name="title_activity_update_diet_information">UpdateDietInformation</string>
-    
+
     <!-- Strings related to ViewDietInformation -->
     <string name="Username">Username</string>
     <string name="Date">Date</string>
     <string name="Weight">Weight</string>
     <string name="Calories">Calories</string>
     <string name="BMI">BMI</string>
-    <string name="Workout_Plan">Workout     Plan</string>
+    <string name="Workout_Plan">Workout Plan</string>
     <string name="Calories_Burned">Calories Burned</string>
+    <string name="title_activity_new__medication_2">New_Medication_2</string>
+    <string name="title_activity_view__vital__signs">View_Vital_Signs</string>
+    <string name="title_activity_vitals__screen">Vitals_Screen</string>
+    <string name="title_activity_vitals__check__screen">Vitals_Check_Screen</string>
+    <string name="title_activity_bad__new__vitals">Bad_New_Vitals</string>
+    <string name="title_activity_current__medication">Current_Medication</string>
+    <string name="title_activity_medication__screen">Medication_Screen</string>
+    <string name="title_activity_new__vitals">New_Vitals</string>
+    <string name="title_activity_new__medication_3">New_Medication_3</string>
+    <string name="title_activity_new__medication__checker">New_Medication_Checker</string>
+    <string name="title_activity_new__medication">New_Medication</string>
+    <string name="title_activity_add_new_doctor">AddNewDoctor</string>
 
+    <!-- Strings related to AddNewDoctor and AddNewAppointment -->
+    <string name="add_new_doctor">Add New Doctor</string>
+    <string name="add_new_appointment">Add New Appointment</string>
+    <string name="Doctor_Type">Doctor Type</string>
+    <string name="title_activity_add_new_appointment">AddNewAppointment</string>
+    <string name="title_activity_view_appointment">ViewAppointment</string>
+    <string name="title_activity_view_doctors">ViewDoctors</string>
+    <string name="appointment_date">Appointment Date</string>
+    <string name="appointment_time">Appointment Time</string>
+    <string name="Edit_Doctor_Information">Edit Doctor Information</string>
+    <string name="Edit_Appointment_Information">Edit Appointment Information</string>
+    <string name="Delete">Delete</string>
+    
 
 </resources>

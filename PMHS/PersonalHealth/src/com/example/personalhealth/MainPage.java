@@ -23,7 +23,6 @@ public class MainPage extends ActionBarActivity {
 		Intent view_user_info_intent = new Intent(this, UserInformation.class);
 		view_user_info_intent.putExtra(EXTRA_MESSAGE,username);
 		startActivity(view_user_info_intent);
-		finish();
 	}
 	public void sign_out_user(View view){
 		//This will bring you back to sign in page
@@ -36,7 +35,6 @@ public class MainPage extends ActionBarActivity {
 		Intent view_diet_information_intent = new Intent(this, ViewDietInformation.class);
 		view_diet_information_intent.putExtra(EXTRA_MESSAGE,username);
 		startActivity(view_diet_information_intent);
-		finish();
 	}
 	
 	public void view_contacts_info(View view)
@@ -51,6 +49,7 @@ public class MainPage extends ActionBarActivity {
     /** Called when the user clicks the Storage button */
     public void gotoStorage(View view) {
     	Intent intent = new Intent(this, DisplayStorageActivity.class);
+		intent.putExtra(EXTRA_MESSAGE,username);
     	startActivity(intent);
     }
 
@@ -63,6 +62,18 @@ public class MainPage extends ActionBarActivity {
 		setContentView(R.layout.fragment_main_page);
 		TextView text = (TextView)findViewById(R.id.textView2);
 		text.setText("Username: "+username);
+	}
+	public void Go_To_Vitals(View view)
+	{
+		Intent intent = new Intent(this, Vitals_Screen.class);
+		intent.putExtra(EXTRA_MESSAGE,username);
+		startActivity(intent);
+	}
+	public void Go_To_Medication(View view)
+	{
+		Intent intent = new Intent(this, Medication_Screen.class);
+		intent.putExtra(EXTRA_MESSAGE,username);
+		startActivity(intent);
 	}
 }
 

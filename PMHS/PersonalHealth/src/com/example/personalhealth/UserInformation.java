@@ -5,6 +5,7 @@ import com.example.personalhealth.userInfoDB.Row;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NavUtils;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -29,7 +30,7 @@ public class UserInformation extends ActionBarActivity {
 		finish();
 	}
 	
-	
+	/*
 	//Transition page from User Information to Main Page
 	public void return_to_main_page(View view){
 		//Pass username to the main page and go to the main page
@@ -38,7 +39,7 @@ public class UserInformation extends ActionBarActivity {
 		startActivity(return_to_main_page_intent);
 		finish();
 	}
-	
+	*/
 	
 	//Set all of the user information in the textviews
 	public void set_textviews_for_user_information(Row userInfo)
@@ -87,7 +88,7 @@ public class UserInformation extends ActionBarActivity {
 	    
 	    TextView Zipcode_textview = (TextView)findViewById(R.id.Zipcode_textview);
 	    Zipcode_textview.setText("Zipcode: "+String.valueOf(userInfo.Zipcode));
-	    
+	    /*
 	    TextView Doctor_Name_textview = (TextView)findViewById(R.id.Doctor_Name_textview);
 	    Doctor_Name_textview.setText("Doctor Name: "+userInfo.Doctors_Name);
 	    
@@ -99,7 +100,7 @@ public class UserInformation extends ActionBarActivity {
 	    
 	    TextView Guest_Password_textview = (TextView)findViewById(R.id.Guest_Password_textview);
 	    Guest_Password_textview.setText("Guest Password: "+userInfo.Guest_Password);
-	    
+	    */
 	}
 	
 	@Override
@@ -117,7 +118,23 @@ public class UserInformation extends ActionBarActivity {
 		//function that will put this data on screen so user can see it
 		set_textviews_for_user_information(userInformation);
 		
-		
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// This ID represents the Home or Up button. In the case of this
+			// activity, the Up button is shown. Use NavUtils to allow users
+			// to navigate up one level in the application structure. For
+			// more details, see the Navigation pattern on Android Design:
+			//
+			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
+			//
+			NavUtils.navigateUpFromSameTask(this);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
 }

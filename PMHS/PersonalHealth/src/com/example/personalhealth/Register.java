@@ -180,6 +180,7 @@ public class Register extends ActionBarActivity {
 			Zipcode_input.setError("Valid Zipcode is Required");
 		}else{
 		
+			/*
 		///	get doctor name from text box
 			
 		EditText Doctor_Name_text = (EditText)findViewById(R.id.Doctor_Name);
@@ -206,7 +207,7 @@ public class Register extends ActionBarActivity {
 		{
 			Doctor_Phone_text.setError("Doctor Phone is Required");
 		}else{
-		
+		*/
 		//Check to make sure the username does not already exist	
 		
 		if(Db.checkExists(username)==1)
@@ -219,12 +220,11 @@ public class Register extends ActionBarActivity {
 			
 		Db.createRow(username,password,First_Name,Last_Name,
 				Email_Address,Street_Name,City,State,Zipcode,
-				Age,Gender,Weight,Height_Feet,Height_Inches,
-				Doctor_Name,Doctor_Email,Doctor_Phone);
+				Age,Gender,Weight,Height_Feet,Height_Inches);
 	    Intent intent = new Intent(this, Login.class);
 	    startActivity(intent);
 	    finish();
-		}}}}}}}}}}}}}}}}}}}}}}}}
+		}}}}}}}}}}}}}}}}}}}}}
 	}
 	
 	@Override

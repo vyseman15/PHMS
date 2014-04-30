@@ -103,7 +103,8 @@
                android:layout_centerVertical="true"
                android:background="@drawable/pills_icon"
                android:contentDescription="@string/abc_searchview_description_search"
-               android:src="@drawable/abc_ab_bottom_transparent_dark_holo" />
+               android:src="@drawable/abc_ab_bottom_transparent_dark_holo"
+               android:onClick="Go_To_Medication" />
 
            <ImageButton
                android:id="@+id/imageButton5"
@@ -124,7 +125,8 @@
                android:layout_centerVertical="true"
                android:background="@drawable/vitals_icon"
                android:contentDescription="@string/abc_searchview_description_search"
-               android:src="@drawable/abc_ab_bottom_transparent_dark_holo" />
+               android:src="@drawable/abc_ab_bottom_transparent_dark_holo" 
+               android:onClick="Go_To_Vitals"/>
 
        </RelativeLayout>
        
