@@ -108,12 +108,25 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 	-->
 	
+	
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_update_user_information"
         android:onClick="update_user_data" />
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/view_appointment"
+        android:onClick="view_appointment" />
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/view_doctor"
+        android:onClick="view_doctor" />
    <!-- 
     <Button
         android:id="@+id/button2"

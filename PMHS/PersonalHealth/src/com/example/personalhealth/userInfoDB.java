@@ -18,8 +18,8 @@ public class userInfoDB {
         public String First_Name;
         public String Last_Name,Email;
         public String Gender;
-        public String Street_Address, City, State, Doctors_Name, Doctors_Email, Doctor_Type, Appointment_Date;
-        public String Doctors_Phone;
+        public String Street_Address, City, State, Doctors_Name, Doctor_Email, Doctor_Type, Appointment_Date;
+        public String Doctor_Phone;
         public Integer Age, Weight, Height_Feet, Height_Inches, Zipcode;
     }
 
@@ -45,19 +45,20 @@ public class userInfoDB {
     		"CREATE TABLE IF NOT EXISTS DOCTOR_DATA(key INTEGER PRIMARY KEY AUTOINCREMENT, "
     				+ "Username TEXT, "
     				+ "Doctor_Name TEXT, "
-    				+ "Doctors_Email TEXT, "
-    	            + "Doctors_Phone TEXT, " 
+    				+ "Doctor_Email TEXT, "
+    	            + "Doctor_Phone TEXT, " 
     	            + "Doctor_Type TEXT"
     	            +");";
     private static final String APPOINTMENT_TABLE_CREATE = 
     		"CREATE TABLE IF NOT EXISTS APPOINTMENT_DATA(key INTEGER PRIMARY KEY AUTOINCREMENT, "
+    				+ "Username TEXT, "
     				+ "Doctor_Name TEXT, "
-    				+ "Appointment_Date TEXT"
+    				+ "Appointment_Date TEXT, "
     				+ "Appointment_Time TEXT"
     	            +");";
     
     //Database and table names
-    private static final String DATABASE_NAME = "USERDATABBASE";
+    private static final String DATABASE_NAME = "MainUserDB";
     private static final String DATABASE_TABLE = "USERSTUFF";
     private static final String DOCTOR_TABLE ="DOCTOR_DATA";
     private static final String APPOINTMENT_TABLE ="APPOINTMENT_DATA";
@@ -79,28 +80,30 @@ public class userInfoDB {
 
     
     ///All the functions which operate on the Appointment Table such as create, update, view, and delete row
-    public void createAppointmentrRow(String Doctor_Name,String Appointment_Date, String Appointment_Time)
+    public void createAppointmentrRow(String Username, String Doctor_Name,String Appointment_Date, String Appointment_Time)
     {
     	ContentValues userValues = new ContentValues();
+    	userValues.put("Username", Username);
     	userValues.put("Doctor_Name", Doctor_Name);
     	userValues.put("Appointment_Date", Appointment_Date);
     	userValues.put("Appointment_Time", Appointment_Time);
     	db.insert(APPOINTMENT_TABLE, null, userValues);
     }
-    public void updateAppointmentrRow(String Doctor_Name,String Appointment_Date, String Appointment_Time)
+    public void updateAppointmentrRow(String Username, String Doctor_Name,String Appointment_Date, String Appointment_Time)
     {
     	ContentValues userValues = new ContentValues();
+    	userValues.put("Username", Username);
     	userValues.put("Doctor_Name", Doctor_Name);
     	userValues.put("Appointment_Date", Appointment_Date);
     	userValues.put("Appointment_Time", Appointment_Time);
-    	db.update(APPOINTMENT_TABLE, userValues, "Doctor_Name ='"+Doctor_Name+"'", null);
+    	db.update(APPOINTMENT_TABLE, userValues, "Username ='"+Username+"' AND Doctor_Name ='"+Doctor_Name+"' AND Appointment_Date ='"+Appointment_Date+"'", null);
     }
-    public void deleteAppointmentRow(String Doctor_Name, String Appointment_Date, String Appointment_Time) {
-        db.delete(APPOINTMENT_TABLE, "Doctor_Name ='"+Doctor_Name+"' AND Appointment_Date ='"+Appointment_Date+"' AND Appointment_Time ='"+Appointment_Time+"'", null);
+    public void deleteAppointmentRow(String Username, String Doctor_Name, String Appointment_Date, String Appointment_Time) {
+        db.delete(APPOINTMENT_TABLE, "Username ='"+Username+"' AND Doctor_Name ='"+Doctor_Name+"' AND Appointment_Date ='"+Appointment_Date+"' AND Appointment_Time ='"+Appointment_Time+"'", null);
     }
-    public int checkAppointmentExists(String Doctor_Name, String Appointment_Date, String Appointment_Time){
+    public int checkAppointmentExists(String Username, String Doctor_Name, String Appointment_Date, String Appointment_Time){
     	int exists=0;
-    	Cursor c = db.rawQuery("SELECT EXISTS(SELECT 1 FROM "+DOCTOR_TABLE+" WHERE Doctor_Name ='"+Doctor_Name+"' AND Appointment_Date ='"+Appointment_Date+"' AND Appointment_Time ='"+Appointment_Time+"')",null);
+    	Cursor c = db.rawQuery("SELECT EXISTS(SELECT 1 FROM "+APPOINTMENT_TABLE+" WHERE Username ='"+Username+"' AND Doctor_Name ='"+Doctor_Name+"' AND Appointment_Date ='"+Appointment_Date+"' AND Appointment_Time ='"+Appointment_Time+"')",null);
     	if ((c != null) && (c.moveToFirst())) {
     		exists = c.getInt(0);
     	}
@@ -113,6 +116,7 @@ public class userInfoDB {
     public void createDoctorRow(String Username, String Doctor_Name,String Doctor_Phone, String Doctor_Email, String Doctor_Type)
     {
     	ContentValues userValues = new ContentValues();
+    	userValues.put("Username", Username);
     	userValues.put("Doctor_Name", Doctor_Name);
     	userValues.put("Doctor_Phone", Doctor_Phone);
     	userValues.put("Doctor_Email", Doctor_Email);
@@ -127,7 +131,7 @@ public class userInfoDB {
     	userValues.put("Doctor_Phone", Doctor_Phone);
     	userValues.put("Doctor_Email", Doctor_Email);
     	userValues.put("Doctor_Type", Doctor_Type);
-    	db.update(DOCTOR_TABLE, userValues, "Doctor_Name ='"+Doctor_Name+"'", null);
+    	db.update(DOCTOR_TABLE, userValues, "Doctor_Name ='"+Doctor_Name+"' AND Username ='"+Username+"'", null);
     }
     public void deleteDoctorRow(String Username, String Doctor_Name) {
         db.delete(DOCTOR_TABLE, "Doctor_Name ='"+Doctor_Name+"' AND Username ='"+Username+"'", null);

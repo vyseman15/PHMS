@@ -102,6 +102,9 @@
     <string name="BMI">BMI</string>
     <string name="Workout_Plan">Workout Plan</string>
     <string name="Calories_Burned">Calories Burned</string>
+    
+    
+    
     <string name="title_activity_new__medication_2">New_Medication_2</string>
     <string name="title_activity_view__vital__signs">View_Vital_Signs</string>
     <string name="title_activity_vitals__screen">Vitals_Screen</string>
@@ -126,7 +129,12 @@
     <string name="appointment_time">Appointment Time</string>
     <string name="Edit_Doctor_Information">Edit Doctor Information</string>
     <string name="Edit_Appointment_Information">Edit Appointment Information</string>
+    <string name="view_appointment">View Appointments</string>
+    <string name="view_doctor">View Doctors</string>
     <string name="Delete">Delete</string>
-    
+    <string name="pick_time">Pick Time</string>
+    <string name="pick_date">Pick Date</string>
+    <string name="Save">Save</string>
+    <string name="view_doctors">View Doctors</string>
 
 </resources>

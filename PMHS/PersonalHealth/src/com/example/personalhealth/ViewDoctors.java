@@ -2,10 +2,25 @@ package com.example.personalhealth;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
 
 public class ViewDoctors extends Activity {
 
+	public final static String EXTRA_MESSAGE = "medical.app";
+	String username;
+	
+	public void update_doctor_info(View view){
+		//pass username to the UpdateUserInformation class
+		Intent update_user_info_intent = new Intent(this, AddNewDoctor.class);
+		update_user_info_intent.putExtra(EXTRA_MESSAGE,username);
+		startActivity(update_user_info_intent);
+	}
+	
+	
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

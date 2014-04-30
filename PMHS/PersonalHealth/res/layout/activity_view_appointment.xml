@@ -10,7 +10,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
+        android:text="View Appointment" />
+	<Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Edit_Appointment_Information"
+        android:onClick="update_appointment_info" />
 </LinearLayout>
 </ScrollView>

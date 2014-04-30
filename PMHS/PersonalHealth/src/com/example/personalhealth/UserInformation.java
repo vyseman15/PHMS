@@ -2,6 +2,7 @@ package com.example.personalhealth;
 
 
 import com.example.personalhealth.userInfoDB.Row;
+
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,22 @@ public class UserInformation extends ActionBarActivity {
 
 	public final static String EXTRA_MESSAGE = "medical.app";
 	String username;
+	
+	
+	
+	public void view_doctor(View view){
+		//pass username to the UpdateUserInformation class
+		Intent view_doctor = new Intent(this, ViewDoctors.class);
+		view_doctor.putExtra(EXTRA_MESSAGE,username);
+		startActivity(view_doctor);
+	}
+	public void view_appointment(View view){
+		//pass username to the UpdateUserInformation class
+		Intent view_appointment = new Intent(this, ViewAppointment.class);
+		view_appointment.putExtra(EXTRA_MESSAGE,username);
+		startActivity(view_appointment);
+	}
+	
 	//Transition page from User Information to Update User Information
 	public void update_user_data(View view){
 		//pass username to the UpdateUserInformation class
