@@ -75,22 +75,121 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
 
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/NewMed2DoseText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Dose Size"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <EditText
+        android:id="@+id/MedDosage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="8"
+        android:inputType="number" />
+</LinearLayout>
+<TextView
+    android:id="@+id/NewMed2TODText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Time of Day"
+    android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
+<CheckBox
+    android:id="@+id/CBM"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Morning"/>
+<CheckBox
+    android:id="@+id/CBA"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Afternoon"/>
+<CheckBox
+    android:id="@+id/CBE"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Evening"/>
+
+
+
+    <TextView
+        android:id="@+id/NewMed2TPDText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Day of Week"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+<CheckBox
+    android:id="@+id/CBMon"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Monday"/>
+<CheckBox
+    android:id="@+id/CBTues"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Tuesday"/>
+<CheckBox
+    android:id="@+id/CBWednes"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Wednesday"/>
+<CheckBox
+    android:id="@+id/CBThurs"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Thursday"/>
+<CheckBox
+    android:id="@+id/CBFri"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Friday"/>
+<CheckBox
+    android:id="@+id/CBSat"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Satday"/>
+<CheckBox
+    android:id="@+id/CBSun"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Sunday"/>
+
+
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+    
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Known \nConflicts"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+    <EditText
+        android:id="@+id/KnownConflict"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Seperate by \ncommas" />
+</LinearLayout>
+
     <Button
         android:id="@+id/NewMed1ToNewMed2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:onClick="Go_To_Next_2"
-        android:text="Next Step" />
+        android:onClick="Go_To_Checker"
+        android:text="Add Medication" />
 
     
-
-    
-
-        
-
-    
-
     
 </LinearLayout>

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.example.personalhealth.medicationDB.Row;
+import com.example.personalhealth.medicationDB2.Row;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -22,36 +22,40 @@ public class Current_Medication extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_current__medication);
 
-		Row userInformation;
-		medicationDB Db = new medicationDB(this);
-		String [] dataall=new String[Db.lastEntry()];
-		userInformation = Db.getsingleRow(0);
-		for(int i=0;i<Db.lastEntry();i++)
+		String username;
+		int count=0;
+		Row userInformationMeds;
+		medicationDB2 Db = new medicationDB2(this);
+		String [] dataallMeds=new String[Db.lastEntry()+1];
+		username="q";
+		userInformationMeds = Db.getsingleRow(0);
+		for(int i=1;i<Db.lastEntry()+1;i++)
 		{
 			
 			String indivData="";
 			
-			userInformation = Db.getsingleRow(i);
+			userInformationMeds = Db.getsingleRow(i);
 			//if(userInformation.Username.equals("q"));
 			
 		    
 		    
-		    indivData=indivData.concat("Pill Name: "+userInformation.PillName+"\n");
-		    indivData=indivData.concat("OTC Name: "+userInformation.OTCName+"\n");
-		    indivData=indivData.concat("Time(s) of day: "+userInformation.TOD+"\n");
-		    indivData=indivData.concat("Day(s) per week: "+userInformation.TPD+"\n");
-		    indivData=indivData.concat("Dosage: "+userInformation.Dose+"\n");
-		    indivData=indivData.concat("Special Instructions: "+userInformation.Special_Instructions+"\n");
-		    indivData=indivData.concat("Known Conflicts: "+userInformation.Known_Conflicts+"\n");
-		    dataall[i]=indivData;
+			indivData=indivData.concat("Pill Name: "+userInformationMeds.PillName+"\n");
+		    indivData=indivData.concat("OTC Name: "+userInformationMeds.OTCName+"\n");
+		    indivData=indivData.concat("Time(s) of day: "+userInformationMeds.TOD+"\n");
+		    indivData=indivData.concat("Day(s) per week: "+userInformationMeds.TPD+"\n");
+		    indivData=indivData.concat("Dosage: "+userInformationMeds.Dose+"\n");
+		    indivData=indivData.concat("Special Instructions: "+userInformationMeds.Special_Instructions+"\n");
+		    indivData=indivData.concat("Known Conflicts: "+userInformationMeds.Known_Conflicts+"\n");
+		    dataallMeds[count]=indivData;
+		    count++;
 		}
 	    
 		ListView listviewMeds = (ListView) findViewById(R.id.listviewMeds);
 
 	    final ArrayList<String> listMeds = new ArrayList<String>();
-	    for (int i = 0; i < dataall.length; ++i) 
+	    for (int i = 0; i < dataallMeds.length; ++i) 
 	    {
-	      listMeds.add(dataall[i]);
+	      listMeds.add(dataallMeds[i]);
 	    }
 	    final StableArrayAdapter adapter = new StableArrayAdapter(this,
 	        android.R.layout.simple_list_item_1, listMeds);

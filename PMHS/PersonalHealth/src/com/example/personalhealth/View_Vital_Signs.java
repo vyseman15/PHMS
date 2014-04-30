@@ -24,11 +24,14 @@ public class View_Vital_Signs extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_view__vital__signs);
 		
+		String username;
+		int count=0;
 		Row userInformationVitals;
 		userInfoDB2 Db = new userInfoDB2(this);
 		String [] dataall=new String[Db.lastEntry()+1];
 		userInformationVitals = Db.getsingleRow(0);
-		for(int i=0;i<Db.lastEntry()+1;i++)
+		username="q";
+		for(int i=1;i<Db.lastEntry()+1;i++)
 		{
 			
 			String indivData="";
@@ -50,7 +53,8 @@ public class View_Vital_Signs extends Activity {
 		    dataBreaker=String.valueOf(userInformationVitals.Temperature);
 		    indivData=indivData.concat("Temperature:"+dataBreaker+"\n");
 
-		    dataall[i]=indivData;
+		    dataall[count]=indivData;
+		    count++;
 		}
 	    
 		ListView listview2 = (ListView) findViewById(R.id.listview2);
