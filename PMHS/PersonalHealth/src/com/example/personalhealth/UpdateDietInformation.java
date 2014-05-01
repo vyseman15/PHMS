@@ -26,6 +26,29 @@ public class UpdateDietInformation extends ActionBarActivity {
 	String Username;
 	static int DAY, MONTH, YEAR;
 	
+	public void delete_diet_data(View view)
+	{
+		EditText Weight_input = (EditText)findViewById(R.id.Weight_update);
+		UserHealthInfoDB db = new UserHealthInfoDB(this);
+		Date d = null;
+		Calendar cal = GregorianCalendar.getInstance();
+		cal.set(YEAR, MONTH, DAY);
+		d = cal.getTime();	
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy",Locale.US);
+		String formatedDate = sdf.format(d);
+		if(db.checkExists(Username, formatedDate)==1)
+		{
+			db.deleteRow(Username, formatedDate);
+			Intent save_user_doctor_info_intent = new Intent(this, UserInformation.class);
+			save_user_doctor_info_intent.putExtra(EXTRA_MESSAGE,Username);
+			startActivity(save_user_doctor_info_intent);
+			finish();
+		}
+		else
+		{
+			Weight_input.setError("That Diet does not Exist.");
+		}
+	}
 	
 	public void save_user_diet_data(View view){
 		Row dietInfo;

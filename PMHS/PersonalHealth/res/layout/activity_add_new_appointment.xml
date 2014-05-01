@@ -39,6 +39,12 @@
         android:layout_height="wrap_content"
         android:text="@string/Save"
         android:onClick="save_new_appointment" />
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Delete"
+        android:onClick="delete_appointment" />
 
 
 </LinearLayout>

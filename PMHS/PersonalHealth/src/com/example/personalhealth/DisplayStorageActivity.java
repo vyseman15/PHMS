@@ -204,13 +204,13 @@ OnChildClickListener  {
 		  expandbleLis.setGroupIndicator(null);
 		  expandbleLis.setClickable(true);
 		  
-
-		  groupItem.add(db.getSingleType("Recipes"));
-		  Toast.makeText(getBaseContext(),"type1 is " +db.getSingleType("Recipes"), Toast.LENGTH_LONG).show();
-		  groupItem.add(db.getSingleType("Diets"));
-		  Toast.makeText(getBaseContext(),"type2 is " +db.getSingleType("Diets"), Toast.LENGTH_LONG).show();
-		  groupItem.add(db.getSingleType("Articles"));
-		  Toast.makeText(getBaseContext(),"type3 is " +db.getSingleType("Articles"), Toast.LENGTH_LONG).show();
+		  //setGroupData
+		  groupItem.add("Recipes");
+		  //Toast.makeText(getBaseContext(),"type1 is " +db.getSingleType("Recipes"), Toast.LENGTH_LONG).show();
+		  groupItem.add("Diets");
+		  //Toast.makeText(getBaseContext(),"type2 is " +db.getSingleType("Diets"), Toast.LENGTH_LONG).show();
+		  groupItem.add("Articles");
+		  //Toast.makeText(getBaseContext(),"type3 is " +db.getSingleType("Articles"), Toast.LENGTH_LONG).show();
 		  
 		  /**
 		   * Add Data For Recipes
