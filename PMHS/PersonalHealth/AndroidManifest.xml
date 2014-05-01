@@ -32,6 +32,14 @@
                 android:value="com.example.personalhealth.MainActivity" />
         </activity>
         <activity
+            android:name="com.example.personalhealth.ViewContacts"
+           
+            android:parentActivityName="com.example.personalhealth.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.personalhealth.MainActivity" />
+        </activity>
+        <activity
             android:name="com.example.personalhealth.Alarms"
             android:label="@string/title_activity_alarms"
             android:parentActivityName="com.example.personalhealth.MainActivity" >
@@ -115,7 +123,7 @@
         </activity>
         <activity
             android:name="com.example.personalhealth.UpdateDietInformation"
-            android:label="@string/title_activity_update_diet_information" 
+            android:label="@string/title_activity_update_diet_information"
             android:parentActivityName="com.example.personalhealth.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -188,9 +196,10 @@
         <activity
             android:name="com.example.personalhealth.AddNewDoctor"
             android:label="@string/title_activity_add_new_doctor" >
-        	<meta-data
+            <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.personalhealth.ViewDoctors" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -201,6 +210,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.personalhealth.ViewAppointment" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -211,6 +221,7 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.personalhealth.UserInformation" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
@@ -221,9 +232,17 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.personalhealth.UserInformation" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.example.personalhealth.AddNewContact"
+            android:label="@string/title_activity_add_new_contact" >
+        </activity>
+
     </application>
+
 </manifest>
+

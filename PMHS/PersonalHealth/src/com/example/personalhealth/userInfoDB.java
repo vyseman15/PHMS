@@ -20,6 +20,8 @@ public class userInfoDB {
         public String Gender;
         public String Street_Address, City, State, Doctor_Name, Doctor_Email, Doctor_Type, Appointment_Date;
         public String Doctor_Phone;
+        public String Contact_Name, Contact_Email, Contact_Type;
+        public String Contact_Phone;
         public Integer Age, Weight, Height_Feet, Height_Inches, Zipcode;
     }
 
@@ -49,6 +51,16 @@ public class userInfoDB {
     	            + "Doctor_Phone TEXT, " 
     	            + "Doctor_Type TEXT"
     	            +");";
+    
+    private static final String CONTACT_TABLE_CREATE = 
+    		"CREATE TABLE IF NOT EXISTS CONTACT_DATA(key INTEGER PRIMARY KEY AUTOINCREMENT, "
+    				+ "Username TEXT, "
+    				+ "Contact_Name TEXT, "
+    				+ "Contact_Email TEXT, "
+    	            + "Contact_Phone TEXT, " 
+    	            + "Contact_Type TEXT"
+    	            +");";
+    
     private static final String APPOINTMENT_TABLE_CREATE = 
     		"CREATE TABLE IF NOT EXISTS APPOINTMENT_DATA(key INTEGER PRIMARY KEY AUTOINCREMENT, "
     				+ "Username TEXT, "
@@ -61,6 +73,7 @@ public class userInfoDB {
     private static final String DATABASE_NAME = "MainUserDB";
     private static final String DATABASE_TABLE = "USERSTUFF";
     private static final String DOCTOR_TABLE ="DOCTOR_DATA";
+    private static final String CONTACT_TABLE = "CONTACT_DATA";
     private static final String APPOINTMENT_TABLE ="APPOINTMENT_DATA";
     private SQLiteDatabase db;
 
@@ -71,6 +84,7 @@ public class userInfoDB {
         {
         db.execSQL(DATABASE_CREATE);
         db.execSQL(DOCTOR_TABLE_CREATE);
+        db.execSQL(CONTACT_TABLE_CREATE);
         db.execSQL(APPOINTMENT_TABLE_CREATE);
         }
     }
@@ -161,6 +175,47 @@ public class userInfoDB {
     	return c;
     }
     
+ 
+    ///All the functions which operate on the Contact Table such as create, update, view, and delete row
+    public void createContactRow(String Username, String Contact_Name,String Contact_Phone, String Contact_Email, String Contact_Type)
+    {
+    	ContentValues userValues = new ContentValues();
+    	userValues.put("Username", Username);
+    	userValues.put("Contact_Name", Contact_Name);
+    	userValues.put("Contact_Phone", Contact_Phone);
+    	userValues.put("Contact_Email", Contact_Email);
+    	userValues.put("Contact_Type", Contact_Type);
+    	db.insert(CONTACT_TABLE, null, userValues);
+    }
+    public void updateContactRow(String Username, String Contact_Name,String Contact_Phone, String Contact_Email, String Contact_Type)
+    {
+    	ContentValues userValues = new ContentValues();
+    	userValues.put("Username", Username);
+    	userValues.put("Contact_Name", Contact_Name);
+    	userValues.put("Contact_Phone", Contact_Phone);
+    	userValues.put("Contact_Email", Contact_Email);
+    	userValues.put("Contact_Type", Contact_Type);
+    	db.update(CONTACT_TABLE, userValues, "Contact_Name ='"+Contact_Name+"' AND Username ='"+Username+"'", null);
+    }
+    public void deleteContactRow(String Username, String Contact_Name) {
+        db.delete(CONTACT_TABLE, "Contact_Name ='"+Contact_Name+"' AND Username ='"+Username+"'", null);
+    }
+    public int checkContactExists(String Username, String Contact_Name){
+    	int exists=0;
+    	Cursor c = db.rawQuery("SELECT EXISTS(SELECT 1 FROM "+CONTACT_TABLE+" WHERE Contact_Name ='"+Contact_Name+"' AND Username ='"+Username+"')",null);
+    	if ((c != null) && (c.moveToFirst())) {
+    		exists = c.getInt(0);
+    	}
+    	return exists;
+    }
+    public Cursor getContactInformation(String Username)
+    {
+    	Cursor c =
+        		db.query(CONTACT_TABLE, new String[] {"Contact_Name","Contact_Phone","Contact_Email","Contact_Type"},
+        				"Username ='"+Username+"'",null,null,null,null,null);
+    	
+    	return c;
+    }
     
     ///All the functions which operate on the User Table such as create, update, view, and delete row
     public void createRow(

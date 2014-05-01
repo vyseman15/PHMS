@@ -16,17 +16,14 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-
-
-
-public class ViewContactsInformation  extends Activity {
+public class ViewContacts extends Activity {
 
 	public final static String EXTRA_MESSAGE = "medical.app";
 	String Username;
 	
-	public void update_doctor_info(View view){
+	public void update_Contact_info(View view){
 		//pass Username to the UpdateUserInformation class
-		Intent update_user_info_intent = new Intent(this, AddNewDoctor.class);
+		Intent update_user_info_intent = new Intent(this, AddNewContact.class);
 		update_user_info_intent.putExtra(EXTRA_MESSAGE,Username);
 		startActivity(update_user_info_intent);
 		finish();
@@ -60,23 +57,23 @@ public class ViewContactsInformation  extends Activity {
 
 	  }
 	
-	public void displayDoctorInformation()
+	public void displayContactInformation()
 	{
 		int rowcount;
-		String Doctor_Name, Doctor_Email, Doctor_Type, Doctor_Phone;
+		String Contact_Name, Contact_Email, Contact_Type, Contact_Phone;
 		Cursor c;
 		userInfoDB db = new userInfoDB(this);
-		c = db.getDoctorInformation(Username);
+		c = db.getContactInformation(Username);
 		rowcount = c.getCount();
 		String [] dataall=new String[rowcount];
 		if ((c != null) && (c.moveToFirst()))
 		{
 			for(int i=0;i<rowcount;i++)
 			{
-				Doctor_Name = c.getString(c.getColumnIndex("Doctor_Name"));
-				Doctor_Email = c.getString(c.getColumnIndex("Doctor_Email"));
-				Doctor_Phone = c.getString(c.getColumnIndex("Doctor_Phone"));
-				Doctor_Type = c.getString(c.getColumnIndex("Doctor_Type"));
+				Contact_Name = c.getString(c.getColumnIndex("Contact_Name"));
+				Contact_Email = c.getString(c.getColumnIndex("Contact_Email"));
+				Contact_Phone = c.getString(c.getColumnIndex("Contact_Phone"));
+				Contact_Type = c.getString(c.getColumnIndex("Contact_Type"));
 				c.moveToNext();
 				
 				
@@ -86,14 +83,14 @@ public class ViewContactsInformation  extends Activity {
 				//if(dietInfo.Username.equals("q"));
 				
 			    
-				dataBreaker=String.valueOf(Doctor_Name);
-			    indivData=indivData.concat("Doctor_Name: "+dataBreaker+"\n");
-			    dataBreaker=String.valueOf(Doctor_Email);
-			    indivData=indivData.concat("Doctor_Email: "+dataBreaker+"\n");
-			    dataBreaker=String.valueOf(Doctor_Phone);
-			    indivData=indivData.concat("Doctor_Phone: "+dataBreaker+"\n");
-			    dataBreaker=String.valueOf(Doctor_Type);
-			    indivData=indivData.concat("Doctor_Type: "+dataBreaker+"\n");
+				dataBreaker=String.valueOf(Contact_Name);
+			    indivData=indivData.concat("Contact_Name: "+dataBreaker+"\n");
+			    dataBreaker=String.valueOf(Contact_Email);
+			    indivData=indivData.concat("Contact_Email: "+dataBreaker+"\n");
+			    dataBreaker=String.valueOf(Contact_Phone);
+			    indivData=indivData.concat("Contact_Phone: "+dataBreaker+"\n");
+			    dataBreaker=String.valueOf(Contact_Type);
+			    indivData=indivData.concat("Contact_Type: "+dataBreaker+"\n");
 	
 			    dataall[i]=indivData;
 				
@@ -118,17 +115,18 @@ public class ViewContactsInformation  extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_view_doctors);
+		setContentView(R.layout.activity_view_contacts);
 		Intent intent = getIntent();
 		Username = intent.getStringExtra(UserInformation.EXTRA_MESSAGE);
-		displayDoctorInformation();
+		displayContactInformation();
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.view_doctors, menu);
+	    //Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.view_contacts, menu);
 		return true;
 	}
 
 }
+

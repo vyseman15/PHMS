@@ -39,11 +39,9 @@ public class MainPage extends ActionBarActivity {
 	
 	public void view_contacts_info(View view)
 	{
-		Intent view_contact_info_intent = new Intent(this,ViewContactsInformation.class);
+		Intent view_contact_info_intent = new Intent(this,ViewContacts.class);
+		view_contact_info_intent.putExtra(EXTRA_MESSAGE,username);
 		startActivity(view_contact_info_intent);
-		finish();
-		
-		
 	}
 	
     /** Called when the user clicks the Storage button */

@@ -31,7 +31,6 @@
     <string name="Medication">Medication</string>
     <string name="User">User</string>
     <string name="Vitals">Vitals</string>
-    
     <string name="view_contacts_information">view_contacts_information</string>
     <!-- Strings related to all login and diet stuff -->
 
@@ -102,9 +101,6 @@
     <string name="BMI">BMI</string>
     <string name="Workout_Plan">Workout Plan</string>
     <string name="Calories_Burned">Calories Burned</string>
-    
-    
-    
     <string name="title_activity_new__medication_2">New_Medication_2</string>
     <string name="title_activity_view__vital__signs">View_Vital_Signs</string>
     <string name="title_activity_vitals__screen">Vitals_Screen</string>
@@ -137,7 +133,15 @@
     <string name="Save">Save</string>
     <string name="view_doctors">View Doctors</string>
     <string name="view_appointments">View Appointments</string>
-    <string name="add_contact">Add Contact</string>
     
+    <!-- Strings related to AddNewContact -->
+    <string name="add_contact">Add Contact</string>
+    <string name="title_activity_add_new_contact">AddNewContact</string>
+    <string name="Edit_Contact_Information"> Edit Contact Information </string>
+    <string name="add_new_contact"> add new contact</string>
+    <string name="Contact_Name">Contact Name</string>
+    <string name="Contact_Email">Contact Email</string>
+    <string name="Contact_Phone">Contact Phone</string>
+    <string name="Contact_Type">Contact Type</string>
 
 </resources>
