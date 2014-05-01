@@ -385,16 +385,17 @@ public void dbWrite(String DBNAME)
 
 	}
 	
-    @Override
+    
+	/*
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu items for use in the action bar
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_activity_actions, menu);
-        SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        searchView.setQueryHint("Search by Name");
+        //SearchView searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        //searchView.setQueryHint("Search by Name");
         return super.onCreateOptionsMenu(menu);
 
-    }
+    }*/
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
