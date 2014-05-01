@@ -88,8 +88,8 @@ public class MainPage extends ActionBarActivity {
 public void Button_set(View view)
 {
 	Intent alarmIntent = new Intent(AlarmClock.ACTION_SET_ALARM);
-	alarmIntent.putExtra(AlarmClock.EXTRA_HOUR, 10);
-	alarmIntent.putExtra(AlarmClock.EXTRA_MINUTES, 1);
+	alarmIntent.putExtra(AlarmClock.EXTRA_HOUR, alarmHour);
+	alarmIntent.putExtra(AlarmClock.EXTRA_MINUTES, alarmMinute);
 	startActivity(alarmIntent);
 }
 	public void Go_To_Vitals(View view)
