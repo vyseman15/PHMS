@@ -50,7 +50,7 @@ OnChildClickListener  {
 	 ArrayList<String> groupItem = new ArrayList<String>();
 	 ArrayList<Object> childItem = new ArrayList<Object>();
 	
-    private static final String DATABASE_NAME = "storageManagerNew6";
+    private static final String DATABASE_NAME = "storageManagerNew9";
     // Database Helper
     DatabaseHelper db;
     //Boolean isTrue = true;
@@ -204,43 +204,14 @@ OnChildClickListener  {
 		  expandbleLis.setGroupIndicator(null);
 		  expandbleLis.setClickable(true);
 		  
-		  setGroupData();
-		  setChildGroupData();
-		
-		  NewAdapter mNewAdapter = new NewAdapter(groupItem, childItem);
-		  mNewAdapter
-		    .setInflater(
-		      (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE),
-		      this);
-		  getExpandableListView().setAdapter(mNewAdapter);
-		  expandbleLis.setOnChildClickListener(this);
-		 
-	    dbWrite(DATABASE_NAME);
-        db.closeDB();
 
-       //context.deleteDatabase(DATABASE_NAME);
-
-      //dbWrite(DATABASE_NAME);
-    }
-
-	 public void setGroupData() 
-	 {
-		 groupItem.add(db.getSingleType("Recipes"));
-		 groupItem.add(db.getSingleType("Diets"));
-		 groupItem.add(db.getSingleType("Articles"));
-		  //groupItem.add(db.getSingleType("Recipes"));
-		  //Toast.makeText(getBaseContext(),"type1 is " +db.getSingleType("Recipes"), Toast.LENGTH_LONG).show();
-		  //groupItem.add(db.getSingleType("Diets"));
-		  //Toast.makeText(getBaseContext(),"type2 is " +db.getSingleType("Diets"), Toast.LENGTH_LONG).show();
-		  //groupItem.add(db.getSingleType("Articles"));
-		  //Toast.makeText(getBaseContext(),"type3 is " +db.getSingleType("Articles"), Toast.LENGTH_LONG).show();
-
-	 }
-
-	
-	 public void setChildGroupData() {
-			Intent intent = getIntent();
-			userName = intent.getStringExtra(Login.EXTRA_MESSAGE);
+		  groupItem.add(db.getSingleType("Recipes"));
+		  Toast.makeText(getBaseContext(),"type1 is " +db.getSingleType("Recipes"), Toast.LENGTH_LONG).show();
+		  groupItem.add(db.getSingleType("Diets"));
+		  Toast.makeText(getBaseContext(),"type2 is " +db.getSingleType("Diets"), Toast.LENGTH_LONG).show();
+		  groupItem.add(db.getSingleType("Articles"));
+		  Toast.makeText(getBaseContext(),"type3 is " +db.getSingleType("Articles"), Toast.LENGTH_LONG).show();
+		  
 		  /**
 		   * Add Data For Recipes
 		   */
@@ -296,8 +267,89 @@ OnChildClickListener  {
 		  }
 		  childItem.add(child);
 
+		 
+		
+		  NewAdapter mNewAdapter = new NewAdapter(groupItem, childItem);
+		  mNewAdapter
+		    .setInflater(
+		      (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE),
+		      this);
+		  getExpandableListView().setAdapter(mNewAdapter);
+		  expandbleLis.setOnChildClickListener(this);
+		 
+	    dbWrite(DATABASE_NAME);
+        db.closeDB();
+
+       //context.deleteDatabase(DATABASE_NAME);
+
+      //dbWrite(DATABASE_NAME);
+    }
+
+
+
+	 
+
+	/*
+	 public void setChildGroupData() {
+			Intent intent = getIntent();
+			userName = intent.getStringExtra(Login.EXTRA_MESSAGE);
+		  
+		  // Add Data For Recipes
+		   
+		  ArrayList<String> child = new ArrayList<String>();
+
+		  Cursor cR = db.getAllStorageByTypeCursor("Recipes", userName);
+		  int count = cR.getCount();
+		  if((cR != null) && (cR.moveToFirst()))
+		  {
+			  for(int i = 0; i < count; i++)
+				 {
+			 
+				 child.add(i, cR.getString(cR.getColumnIndex("name")));
+				 cR.moveToNext();
+				 }
+		  }
+
+		  childItem.add(child);
+
+		  
+		   //Add Data For Diets
+		   
+		  child = new ArrayList<String>();
+
+		  Cursor cD = db.getAllStorageByTypeCursor("Diets", userName);
+		  int count2 = cD.getCount();
+		  if((cD != null) && (cD.moveToFirst()))
+		  {
+			  for(int i = 0; i < count2; i++)
+				 {
+			 
+				 child.add(i, cD.getString(cD.getColumnIndex("name")));
+				 cD.moveToNext();
+				 }
+		  }
+
+		  childItem.add(child);
+		  /
+		   //Add Data For Articles
+		   
+		  child = new ArrayList<String>();
+
+		  Cursor cA = db.getAllStorageByTypeCursor("Articles", userName);
+		  int count3 = cD.getCount();
+		  if((cA != null) && (cA.moveToFirst()))
+		  {
+			  for(int i = 0; i < count3; i++)
+				 {
+			 
+				 child.add(i, cA.getString(cA.getColumnIndex("name")));
+				 cA.moveToNext();
+				 }
+		  }
+		  childItem.add(child);
+
 		 }
-	
+	*/
 
 	 @Override
 	 public boolean onChildClick(ExpandableListView parent, View v,
@@ -374,27 +426,6 @@ public void dbWrite(String DBNAME)
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	/*
-	private void fillDataDiet() {
-		Intent intent = getIntent();
-		userName = intent.getStringExtra(Login.EXTRA_MESSAGE);
-	    mGroupsCursor = DatabaseHelper.getAllStorageByType("Diets", userName);
-	    getActivity().startManagingCursor(mGroupsCursor);
-	    mGroupsCursor.moveToFirst();
-
-	    ExpandableListView elv = (ExpandableListView) getActivity().findViewById(android.R.id.list);
-
-	    mAdapter = new MyExpandableListAdapter(mGroupsCursor, getActivity(),
-	        R.layout.rowlayout_expgroup,                     // Your row layout for a group
-	        R.layout.rowlayout_itemlist_exp,                 // Your row layout for a child
-	        new String[] { "id_room" },                      // Field(s) to use from group cursor
-	        new int[] { android.R.id.room },                 // Widget ids to put group data into
-	        new String[] { "name_device", "state_device" },  // Field(s) to use from child cursors
-	        new int[] { R.id.device, R.id.state });          // Widget ids to put child data into
-
-	        lv.setAdapter(mAdapter);                         // set the list adapter.
-	    }
-	*/
 
 
 }

@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
  
     // Database Name
-    private static final String DATABASE_NAME = "storageManagerNew6";
+    private static final String DATABASE_NAME = "storageManagerNew9";
  
     // Table Names
     private static final String TABLE_STORAGE = "storage";
@@ -341,7 +341,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(selectQuery, null);
         if(typeName_Id == "Recipes")
         {
-        	if (c.move(1))
+        	if (c.moveToPosition(0))
         	{
             type = (c.getString(c.getColumnIndex(KEY_TYPE_NAME)));
             return type;
@@ -350,7 +350,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         if(typeName_Id == "Diets")
         {
-        	if (c.move(2))
+        	if (c.moveToPosition(1))
         	{
             type = (c.getString(c.getColumnIndex(KEY_TYPE_NAME)));
             return type;
@@ -359,7 +359,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         if(typeName_Id == "Articles")
         {
-        	if (c.move(3))
+        	if (c.moveToPosition(2))
         	{
             type = (c.getString(c.getColumnIndex(KEY_TYPE_NAME)));
             return type;
