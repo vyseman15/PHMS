@@ -80,7 +80,7 @@ public class userInfoDB2 {
     	}
     	return exists;
     }
-
+   
 
     public void updateRow(Integer Place, String Username, Integer Glucose, Integer BPS,
             Integer BPD, Integer Cholesterol, Integer Temperature, String Status) 

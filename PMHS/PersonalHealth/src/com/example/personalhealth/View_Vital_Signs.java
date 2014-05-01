@@ -36,31 +36,33 @@ public class View_Vital_Signs extends Activity {
 			
 			String indivData="";
 		    String dataBreaker="";
-		    
-			userInformationVitals = Db.getsingleRow(i);
-			//if(userInformation.Username.equals("q"));
-			
-		    
-		    
-		    dataBreaker=String.valueOf(userInformationVitals.BPS);
-		    indivData=indivData.concat("Blood Pressure Systolic: "+dataBreaker+"\n");
-		    dataBreaker=String.valueOf(userInformationVitals.BPD);
-		    indivData=indivData.concat("Blood Pressure diastolic: "+dataBreaker+"\n");
-		    dataBreaker=String.valueOf(userInformationVitals.Cholesterol);
-		    indivData=indivData.concat("Cholesterol:"+dataBreaker+"\n");
-		    dataBreaker=String.valueOf(userInformationVitals.Glucose);
-		    indivData=indivData.concat("Glucose:"+dataBreaker+"\n");
-		    dataBreaker=String.valueOf(userInformationVitals.Temperature);
-		    indivData=indivData.concat("Temperature:"+dataBreaker+"\n");
-
-		    dataall[count]=indivData;
-		    count++;
+		    userInformationVitals = Db.getsingleRow(i);
+			if(userInformationVitals.BPS==null)
+			{
+			}
+			else
+			{
+			    
+			    dataBreaker=String.valueOf(userInformationVitals.BPS);
+			    indivData=indivData.concat("Blood Pressure Systolic: "+dataBreaker+"\n");
+			    dataBreaker=String.valueOf(userInformationVitals.BPD);
+			    indivData=indivData.concat("Blood Pressure diastolic: "+dataBreaker+"\n");
+			    dataBreaker=String.valueOf(userInformationVitals.Cholesterol);
+			    indivData=indivData.concat("Cholesterol:"+dataBreaker+"\n");
+			    dataBreaker=String.valueOf(userInformationVitals.Glucose);
+			    indivData=indivData.concat("Glucose:"+dataBreaker+"\n");
+			    dataBreaker=String.valueOf(userInformationVitals.Temperature);
+			    indivData=indivData.concat("Temperature:"+dataBreaker+"\n");
+			    indivData=indivData.concat("Status:"+userInformationVitals.Status);
+			    dataall[count]=indivData;
+			    count++;
+			}
 		}
 	    
 		ListView listview2 = (ListView) findViewById(R.id.listview2);
 
 	    final ArrayList<String> list = new ArrayList<String>();
-	    for (int i = 0; i < dataall.length; ++i) 
+	    for (int i = 0; i < count; ++i) 
 	    {
 	      list.add(dataall[i]);
 	    }
@@ -118,9 +120,8 @@ public class View_Vital_Signs extends Activity {
 		{
 			Db.deleteRow(i);
 		}
-		Intent intent=new Intent(this,View_Vital_Signs.class);
+		Intent intent = new Intent(this, View_Vital_Signs.class);
 		startActivity(intent);
 		finish();
-		
 	}
 }

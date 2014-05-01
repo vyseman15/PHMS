@@ -14,7 +14,7 @@ import android.view.View;
 public class medicationDB2 {
 
 	
-	class Row extends Object {
+	class Row2 extends Object {
 		public String Username;
 		public String PillName;
 		public String OTCName;
@@ -98,8 +98,8 @@ public class medicationDB2 {
         userValues.put("Known_Conflicts", Known_Conflicts);
         db.update(DATABASE_TABLE, userValues, "Place ='"+Place+"'", null);
     }
-    public Row getsingleRow(int place) {
-        Row row = new Row();
+    public Row2 getsingleRow(int place) {
+        Row2 row = new Row2();
         Cursor c =
         		db.query(DATABASE_TABLE, new String[] {"Place","Username","PillName","OTCName","TOD",
         				"TPD","Dose","Special_Instructions","Known_Conflicts"}, "Place ='"+place+"'", null, null, null, null);
