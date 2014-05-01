@@ -15,23 +15,32 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:text="@string/username" />
-   
 
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
+        android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
+        android:layout_marginTop="26dp"
         android:text="@string/button_create" />
 
     <ExpandableListView
         android:id="@+id/android:list"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/button1"
-        android:layout_centerHorizontal="true" >
+        android:layout_height="100dp"
+        android:layout_alignLeft="@+id/button1"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/button1" >
 
     </ExpandableListView>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:text="Here are your Recipes, Diets, and Articles." />
 
 </RelativeLayout>
