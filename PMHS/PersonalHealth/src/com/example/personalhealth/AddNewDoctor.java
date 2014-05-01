@@ -10,6 +10,29 @@ public class AddNewDoctor extends Activity {
 	public final static String EXTRA_MESSAGE = "medical.app";
 	String Username;
 	
+	public void delete_doctor(View view)
+	{
+		userInfoDB db = new userInfoDB(this);
+		EditText Doctor_Name_text = (EditText)findViewById(R.id.Doctor_Name);
+		String Doctor_Name = Doctor_Name_text.getText().toString();
+		if(Doctor_Name == null || Doctor_Name.equals(""))
+		{
+			Doctor_Name_text.setError("Doctor Name is Required");
+		}else{
+			if(db.checkDoctorExists(Username, Doctor_Name)==1)
+			{
+				db.deleteDoctorRow(Username, Doctor_Name);
+				Intent save_user_doctor_info_intent = new Intent(this, ViewDoctors.class);
+				save_user_doctor_info_intent.putExtra(EXTRA_MESSAGE,Username);
+				startActivity(save_user_doctor_info_intent);
+				finish();
+			}
+			else
+			{
+				Doctor_Name_text.setError("That Doctor Name does not Exist.");
+			}
+		}
+	}
 	
 	public void save_new_doctor(View view)
 	{

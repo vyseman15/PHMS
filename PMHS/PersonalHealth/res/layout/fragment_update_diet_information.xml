@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     
-	    <Button 
+	    <Button
 	    android:layout_width="wrap_content" 
 	    android:layout_height="wrap_content"
 	    android:text="@string/pick_date" 
@@ -52,5 +52,11 @@
         android:onClick="save_user_diet_data"
         android:text="@string/save_user_input_data" />
 
+		<Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Delete"
+        android:onClick="delete_diet_data" />
 	</LinearLayout>
 </ScrollView>

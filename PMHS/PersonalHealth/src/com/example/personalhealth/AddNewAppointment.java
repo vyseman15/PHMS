@@ -25,6 +25,43 @@ public class AddNewAppointment extends FragmentActivity {
 	String Username;
 	static int DAY,MONTH,YEAR,HOUR,MINUTE;
 	
+	
+	
+	public void delete_appointment(View view)
+	{
+		userInfoDB db = new userInfoDB(this);
+		///	get doctor name from text box
+		
+		
+		EditText Doctor_Name_text = (EditText)findViewById(R.id.Doctor_Name);
+		String Doctor_Name = Doctor_Name_text.getText().toString();
+		if(Doctor_Name == null || Doctor_Name.equals(""))
+		{
+			Doctor_Name_text.setError("Doctor Name is Required");
+		}else{
+		
+			Date d = null;
+			Calendar cal = GregorianCalendar.getInstance();
+			cal.set(YEAR, MONTH, DAY);
+			d = cal.getTime();	
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy",Locale.US);
+			String formatedDate = sdf.format(d);
+			if(db.checkAppointmentExists(Username, Doctor_Name, formatedDate)==1)
+			{
+				db.deleteAppointmentRow(Username, Doctor_Name, formatedDate);
+				Intent save_user_doctor_info_intent = new Intent(this, ViewAppointment.class);
+				save_user_doctor_info_intent.putExtra(EXTRA_MESSAGE,Username);
+				startActivity(save_user_doctor_info_intent);
+				finish();
+			}
+			else{
+				Doctor_Name_text.setError("Appointment does not Exist.");
+			}
+		}
+	}
+	
+	
+	
 	public void save_new_appointment(View view)
 	{
 		userInfoDB db = new userInfoDB(this);
@@ -47,7 +84,7 @@ public class AddNewAppointment extends FragmentActivity {
 		String formatedTime =HOUR+":"+MINUTE;
 		
 		
-		if(db.checkAppointmentExists(Username, Doctor_Name, formatedDate, formatedTime)==0)
+		if(db.checkAppointmentExists(Username, Doctor_Name, formatedDate)==0)
 		{
 			db.createAppointmentrRow(Username, Doctor_Name, formatedDate, formatedTime);
 		}

@@ -98,12 +98,12 @@ public class userInfoDB {
     	userValues.put("Appointment_Time", Appointment_Time);
     	db.update(APPOINTMENT_TABLE, userValues, "Username ='"+Username+"' AND Doctor_Name ='"+Doctor_Name+"' AND Appointment_Date ='"+Appointment_Date+"'", null);
     }
-    public void deleteAppointmentRow(String Username, String Doctor_Name, String Appointment_Date, String Appointment_Time) {
-        db.delete(APPOINTMENT_TABLE, "Username ='"+Username+"' AND Doctor_Name ='"+Doctor_Name+"' AND Appointment_Date ='"+Appointment_Date+"' AND Appointment_Time ='"+Appointment_Time+"'", null);
+    public void deleteAppointmentRow(String Username, String Doctor_Name, String Appointment_Date) {
+        db.delete(APPOINTMENT_TABLE, "Username ='"+Username+"' AND Doctor_Name ='"+Doctor_Name+"' AND Appointment_Date ='"+Appointment_Date+"'", null);
     }
-    public int checkAppointmentExists(String Username, String Doctor_Name, String Appointment_Date, String Appointment_Time){
+    public int checkAppointmentExists(String Username, String Doctor_Name, String Appointment_Date){
     	int exists=0;
-    	Cursor c = db.rawQuery("SELECT EXISTS(SELECT 1 FROM "+APPOINTMENT_TABLE+" WHERE Username ='"+Username+"' AND Doctor_Name ='"+Doctor_Name+"' AND Appointment_Date ='"+Appointment_Date+"' AND Appointment_Time ='"+Appointment_Time+"')",null);
+    	Cursor c = db.rawQuery("SELECT EXISTS(SELECT 1 FROM "+APPOINTMENT_TABLE+" WHERE Username ='"+Username+"' AND Doctor_Name ='"+Doctor_Name+"' AND Appointment_Date ='"+Appointment_Date+"')",null);
     	if ((c != null) && (c.moveToFirst())) {
     		exists = c.getInt(0);
     	}
