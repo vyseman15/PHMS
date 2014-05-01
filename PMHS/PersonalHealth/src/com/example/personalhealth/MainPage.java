@@ -12,11 +12,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.TimePicker.OnTimeChangedListener;
 import android.os.Build;
+import android.provider.AlarmClock;
+
+
 
 public class MainPage extends ActionBarActivity {
 	public final static String EXTRA_MESSAGE = "medical.app";
 	String username;
+	TimePicker myTimePicker;
+	int alarmHour;
+	int alarmMinute;
 	
 	public void view_user_data(View view){
 		//this will bring you to view user information page and pass the username to that page
@@ -52,7 +60,8 @@ public class MainPage extends ActionBarActivity {
     }
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState)
+	{
 		super.onCreate(savedInstanceState);
 		//get username from login
 		Intent intent = getIntent();
@@ -60,7 +69,29 @@ public class MainPage extends ActionBarActivity {
 		setContentView(R.layout.fragment_main_page);
 		TextView text = (TextView)findViewById(R.id.textView2);
 		text.setText("Username: "+username);
+		myTimePicker=(TimePicker)findViewById(R.id.timePicker1);
+	
+	
+		myTimePicker.setOnTimeChangedListener(new OnTimeChangedListener()
+		{
+			@Override
+			public void onTimeChanged(TimePicker view, int aHour, int aMinute)
+			{
+				//Toast.makeText(getApplicationContext(), "Time is: "+hourOfDay+":"+minute, Toast.LENGTH_SHORT).show();
+				alarmHour = aHour;
+				alarmMinute = aMinute;
+			}
+		}
+				);
 	}
+
+public void Button_set(View view)
+{
+	Intent alarmIntent = new Intent(AlarmClock.ACTION_SET_ALARM);
+	alarmIntent.putExtra(AlarmClock.EXTRA_HOUR, 10);
+	alarmIntent.putExtra(AlarmClock.EXTRA_MINUTES, 1);
+	startActivity(alarmIntent);
+}
 	public void Go_To_Vitals(View view)
 	{
 		Intent intent = new Intent(this, Vitals_Screen.class);

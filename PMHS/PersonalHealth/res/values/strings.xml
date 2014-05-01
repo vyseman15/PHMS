@@ -150,5 +150,6 @@
     <string name="PhoneCall">Phone Call</string>
     <string name="Email">Email</string>
     <string name="DeleteContact">Delete Contact</string>
+    <string name="Button_set">Set Alarm</string>
     
 </resources>
