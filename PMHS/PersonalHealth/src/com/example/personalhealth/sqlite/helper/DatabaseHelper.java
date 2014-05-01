@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
  
     // Database Name
-    private static final String DATABASE_NAME = "storageManager";
+    private static final String DATABASE_NAME = "storageManagerNew6";
  
     // Table Names
     private static final String TABLE_STORAGE = "storage";
@@ -221,51 +221,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * getting all storage under single type by single username String
      * */
     public Cursor getAllStorageByTypeCursor(String type_name, String userName_Id) {
-        List<Storage> storages = new ArrayList<Storage>();
-        List<String> strings = new ArrayList<String>();
-        String tester = null;
+
         
         String selectQuery = "SELECT * FROM " + TABLE_STORAGE + " st, "
                 + TABLE_TYPE + " ty, " + TABLE_STORAGE_TYPE + " sy WHERE ty."
                 + KEY_TYPE_NAME + " = '" + type_name + "'" +" AND st."+ KEY_USER +
                 " = '"  + userName_Id + "'" + " AND ty." + KEY_ID + " = " + "sy." + KEY_TYPE_ID + 
                 " AND st." + KEY_ID + " = " + "sy." + KEY_STORAGE_ID;
- 
-        //SELECT * FROM storage st, type ty, storage_type sy WHERE ty. type_name ='Recipes' 
-        //AND st. userName ='j' AND ty. id = sy. type_id AND st. id = sy. storage_id
+
         
         Log.e(LOG, selectQuery);
      
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
      
-        // looping through all rows and adding to list
-        //if (c.moveToFirst()) {
-           // do {
-                //Storage st = new Storage();
-                //st.getId();
-                //st.getName();
-                //st.getUrl();
-                //st.getUserName();
-                //tester = (c.getString(c.getColumnIndex(KEY_NAME)));
-               //Log.e("tester is ", tester);
-                //st.getCreatedAt(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
-     
-                // adding to storages list
-                //storages.add(st);
-            //} while (c.moveToNext());
-       // }
-        /*
-        for (Storage storage : storages) {
-            strings.add(storage != null ? storage.toString() : null);
-        }
-        String test2;
-        test2 = (String)strings.get(1);
-        */
-        //Log.e("tester is ", tester);
-        		
-        //return storages;
-        //return tester;
+   
           return c;
     }
     
@@ -374,6 +344,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         	if (c.move(1))
         	{
             type = (c.getString(c.getColumnIndex(KEY_TYPE_NAME)));
+            return type;
             //Log.e(LOG,type);
         	}
         }
@@ -382,6 +353,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         	if (c.move(2))
         	{
             type = (c.getString(c.getColumnIndex(KEY_TYPE_NAME)));
+            return type;
             //Log.e(LOG,type);
         	}
         }
@@ -390,6 +362,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         	if (c.move(3))
         	{
             type = (c.getString(c.getColumnIndex(KEY_TYPE_NAME)));
+            return type;
             //Log.e(LOG,type);
         	}
         }
@@ -397,6 +370,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return type;
     }
     
+
     /*
      * Updating a type
      */

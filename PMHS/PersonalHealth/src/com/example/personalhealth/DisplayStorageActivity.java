@@ -47,10 +47,10 @@ OnChildClickListener  {
 	//private EditText editTextMainScreen;
 	final Context context = this;
 
-    private ArrayList<String> parentItems = new ArrayList<String>();
-    private ArrayList<Object> childItems = new ArrayList<Object>();
+	 ArrayList<String> groupItem = new ArrayList<String>();
+	 ArrayList<Object> childItem = new ArrayList<Object>();
 	
-    private static final String DATABASE_NAME = "storageManager";
+    private static final String DATABASE_NAME = "storageManagerNew6";
     // Database Helper
     DatabaseHelper db;
     //Boolean isTrue = true;
@@ -165,7 +165,7 @@ OnChildClickListener  {
 		                        //Toast.makeText(getApplicationContext(), items[item],
 		                        //      Toast.LENGTH_SHORT).show();
 								type1_id = item + 1;
-								//Toast.makeText(getBaseContext(),"type1_id is" +type1_id, Toast.LENGTH_LONG).show();
+								Toast.makeText(getBaseContext(),"type1_id is" +type1_id, Toast.LENGTH_LONG).show();
 						}
 						})
 						.setCancelable(false)
@@ -197,7 +197,7 @@ OnChildClickListener  {
 			}
 		});
 		
-		dbWrite(DATABASE_NAME);
+		
 		
 		  ExpandableListView expandbleLis = getExpandableListView();
 		  expandbleLis.setDividerHeight(2);
@@ -215,24 +215,28 @@ OnChildClickListener  {
 		  getExpandableListView().setAdapter(mNewAdapter);
 		  expandbleLis.setOnChildClickListener(this);
 		 
-		 
+	    dbWrite(DATABASE_NAME);
         db.closeDB();
-      //context.deleteDatabase(DATABASE_NAME);
+
+       //context.deleteDatabase(DATABASE_NAME);
+
       //dbWrite(DATABASE_NAME);
     }
 
-
-	 public void setGroupData() {
-	  groupItem.add(db.getSingleType("Recipes"));
-	Toast.makeText(getBaseContext(),"type1 is " +db.getSingleType("Recipes"), Toast.LENGTH_LONG).show();
-	  groupItem.add(db.getSingleType("Diets"));
-	  Toast.makeText(getBaseContext(),"type2id is " +db.getSingleType("Diets"), Toast.LENGTH_LONG).show();
-	  groupItem.add(db.getSingleType("Articles"));
+	 public void setGroupData() 
+	 {
+		 groupItem.add(db.getSingleType("Recipes"));
+		 groupItem.add(db.getSingleType("Diets"));
+		 groupItem.add(db.getSingleType("Articles"));
+		  //groupItem.add(db.getSingleType("Recipes"));
+		  //Toast.makeText(getBaseContext(),"type1 is " +db.getSingleType("Recipes"), Toast.LENGTH_LONG).show();
+		  //groupItem.add(db.getSingleType("Diets"));
+		  //Toast.makeText(getBaseContext(),"type2 is " +db.getSingleType("Diets"), Toast.LENGTH_LONG).show();
+		  //groupItem.add(db.getSingleType("Articles"));
+		  //Toast.makeText(getBaseContext(),"type3 is " +db.getSingleType("Articles"), Toast.LENGTH_LONG).show();
 
 	 }
 
-	 ArrayList<String> groupItem = new ArrayList<String>();
-	 ArrayList<Object> childItem = new ArrayList<Object>();
 	
 	 public void setChildGroupData() {
 			Intent intent = getIntent();
@@ -241,59 +245,55 @@ OnChildClickListener  {
 		   * Add Data For Recipes
 		   */
 		  ArrayList<String> child = new ArrayList<String>();
-		  //int recipeSize = db.getStorageCount(userName);
-		  //String test = db.getAllStorageByTypeString("Recipes", userName);
-		  //Log.e("test is", String.valueOf(recipeSize));
-		 // Toast.makeText(getBaseContext(),test,Toast.LENGTH_LONG).show();
-		//Toast.makeText(getBaseContext(),"type1_id is" +type1_id, Toast.LENGTH_LONG).show();
-		  
-		 //for(int i = 0; i < recipeSize; i++)
-		 // {
-			  //child.add(i,db.getAllStorageByTypeString("Recipes", userName).getString(c.getColumnIndex(KEY_NAME)));
-		  Cursor c = db.getAllStorageByTypeCursor("Recipes", userName);
-		  int count = c.getCount();
-		  if((c != null) && (c.moveToFirst()))
+
+		  Cursor cR = db.getAllStorageByTypeCursor("Recipes", userName);
+		  int count = cR.getCount();
+		  if((cR != null) && (cR.moveToFirst()))
 		  {
 			  for(int i = 0; i < count; i++)
 				 {
 			 
-				 child.add(i, c.getString(c.getColumnIndex("name")));
-				 c.moveToNext();
+				 child.add(i, cR.getString(cR.getColumnIndex("name")));
+				 cR.moveToNext();
 				 }
 		  }
-		 // }
-		  /*
-	        int elements = new Random().nextInt(100);  
-	        for( int i = 0 ; i < elements ; i++ ) {
-	            list.add( new xClass() );
-	        }
-	       */
-		  /*
-		  child.add(db.getAllStorageByType("Recipes", userName));
-		  child.add("Java");
-		  child.add("Drupal");
-		  child.add(".Net Framework");
-		  child.add("PHP");
-		  */
+
 		  childItem.add(child);
 
 		  /**
-		   * Add Data For Mobile
+		   * Add Data For Diets
 		   */
 		  child = new ArrayList<String>();
-		  child.add("Android");
-		  child.add("Window Mobile");
-		  child.add("iPHone");
-		  child.add("Blackberry");
+
+		  Cursor cD = db.getAllStorageByTypeCursor("Diets", userName);
+		  int count2 = cD.getCount();
+		  if((cD != null) && (cD.moveToFirst()))
+		  {
+			  for(int i = 0; i < count2; i++)
+				 {
+			 
+				 child.add(i, cD.getString(cD.getColumnIndex("name")));
+				 cD.moveToNext();
+				 }
+		  }
+
 		  childItem.add(child);
 		  /**
-		   * Add Data For Manufacture
+		   * Add Data For Articles
 		   */
 		  child = new ArrayList<String>();
-		  child.add("HTC");
-		  child.add("Apple");
-		  child.add("Samsung");
-		  child.add("Nokia");
+
+		  Cursor cA = db.getAllStorageByTypeCursor("Articles", userName);
+		  int count3 = cD.getCount();
+		  if((cA != null) && (cA.moveToFirst()))
+		  {
+			  for(int i = 0; i < count3; i++)
+				 {
+			 
+				 child.add(i, cA.getString(cA.getColumnIndex("name")));
+				 cA.moveToNext();
+				 }
+		  }
 		  childItem.add(child);
 
 		 }
@@ -306,14 +306,7 @@ OnChildClickListener  {
 	  return true;
 	 }
 	
-	
-	
-	
-	
-	
-	
-	
-	public void dbWrite(String DBNAME)
+public void dbWrite(String DBNAME)
     {
 		//Context context = getApplicationContext();
 	    String packageName = context.getPackageName();
