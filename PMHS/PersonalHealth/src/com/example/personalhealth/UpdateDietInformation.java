@@ -39,7 +39,7 @@ public class UpdateDietInformation extends ActionBarActivity {
 		if(db.checkExists(Username, formatedDate)==1)
 		{
 			db.deleteRow(Username, formatedDate);
-			Intent save_user_doctor_info_intent = new Intent(this, UserInformation.class);
+			Intent save_user_doctor_info_intent = new Intent(this, ViewDietInformation.class);
 			save_user_doctor_info_intent.putExtra(EXTRA_MESSAGE,Username);
 			startActivity(save_user_doctor_info_intent);
 			finish();
