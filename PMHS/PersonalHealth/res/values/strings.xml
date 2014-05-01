@@ -135,6 +135,7 @@
     <string name="view_appointments">View Appointments</string>
     
     <!-- Strings related to AddNewContact -->
+    <string name="view_contacts">View Contacts</string>
     <string name="add_contact">Add Contact</string>
     <string name="title_activity_add_new_contact">AddNewContact</string>
     <string name="Edit_Contact_Information"> Edit Contact Information </string>

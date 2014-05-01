@@ -8,13 +8,13 @@
         android:id="@+id/textview1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/view_doctors" />
+        android:text="@string/view_contacts" />
     <Button
         android:id="@+id/button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Edit_Contact_Information"
-        android:onClick="update_doctor_info" />
+        android:onClick="update_Contact_info" />
 	    <ListView 
 	        android:id = "@+id/listview1"
 	        android:layout_width="wrap_content"

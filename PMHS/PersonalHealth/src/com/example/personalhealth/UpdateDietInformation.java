@@ -58,7 +58,6 @@ public class UpdateDietInformation extends ActionBarActivity {
 		//String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
 		UserHealthInfoDB Db = new UserHealthInfoDB(this);
 		dietInfo = Db.rowNullConstructor();
-		
 		Date d = null;
 		Calendar cal = GregorianCalendar.getInstance();
 		cal.set(YEAR, MONTH, DAY);
