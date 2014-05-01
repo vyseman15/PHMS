@@ -133,7 +133,7 @@
     <string name="Save">Save</string>
     <string name="view_doctors">View Doctors</string>
     <string name="view_appointments">View Appointments</string>
-    
+
     <!-- Strings related to AddNewContact -->
     <string name="view_contacts">View Contacts</string>
     <string name="add_contact">Add Contact</string>
@@ -144,5 +144,11 @@
     <string name="Contact_Email">Contact Email</string>
     <string name="Contact_Phone">Contact Phone</string>
     <string name="Contact_Type">Contact Type</string>
+    <string name="title_activity_interact_contact">InteractContact</string>
 
+    <string name="TextMessage">Text Message</string>
+    <string name="PhoneCall">Phone Call</string>
+    <string name="Email">Email</string>
+    <string name="DeleteContact">Delete Contact</string>
+    
 </resources>

@@ -7,19 +7,30 @@ import java.util.List;
 import com.example.personalhealth.ViewDietInformation.StableArrayAdapter;
 
 import android.app.Activity;
+import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class ViewContacts extends Activity {
-
+	
 	public final static String EXTRA_MESSAGE = "medical.app";
 	String Username;
+	userInfoDB db;
+	
+	//currently selected contacts info
+	String bigContact_Phone = " ";
+	String bigContact_Email = " ";
+	String bigContact_Name = " ";
 	
 	public void update_Contact_info(View view){
 		//pass Username to the UpdateUserInformation class
@@ -28,6 +39,8 @@ public class ViewContacts extends Activity {
 		startActivity(update_user_info_intent);
 		finish();
 	}
+	
+	
 	
 	
 	
@@ -54,15 +67,44 @@ public class ViewContacts extends Activity {
 	    public boolean hasStableIds() {
 	      return true;
 	    }
+	    
+	    
 
 	  }
+	
+	public void TextMessage(View view)
+	{
+		Intent openTheTextEditor = new Intent(Intent.ACTION_VIEW);		
+		openTheTextEditor.setType("vnd.android-dir/mms-sms");
+		openTheTextEditor.putExtra("address", bigContact_Phone.toString());
+		startActivity(openTheTextEditor);
+	}
+	
+	public void PhoneCall(View view)
+	{
+		Intent callContact = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + bigContact_Phone.toString()));
+		startActivity(callContact);
+	}
+	
+	public void Email(View view)
+	{
+		Intent emailIntent = new Intent(Intent.ACTION_SEND);
+		emailIntent.setType("text/html");
+		emailIntent.putExtra(Intent.EXTRA_EMAIL, bigContact_Email.toString());
+		startActivity(emailIntent);
+	}
+	
+	public void DeleteContact(View view)
+	{
+		db.deleteContactRow(Username, bigContact_Name);
+	}
 	
 	public void displayContactInformation()
 	{
 		int rowcount;
 		String Contact_Name, Contact_Email, Contact_Type, Contact_Phone;
 		Cursor c;
-		userInfoDB db = new userInfoDB(this);
+		db = new userInfoDB(this);
 		c = db.getContactInformation(Username);
 		rowcount = c.getCount();
 		String [] dataall=new String[rowcount];
@@ -111,7 +153,6 @@ public class ViewContacts extends Activity {
 	}
 	
 	
-	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -119,6 +160,43 @@ public class ViewContacts extends Activity {
 		Intent intent = getIntent();
 		Username = intent.getStringExtra(UserInformation.EXTRA_MESSAGE);
 		displayContactInformation();
+		registerClickCallback();
+		//setListAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list));
+	}
+	
+	private void registerClickCallback()
+	{
+		ListView listview = (ListView) findViewById(R.id.listview1);
+		
+		listview.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+			
+			@Override
+			public void onItemClick(AdapterView<?> Parent, View viewClicked, int position,long id) {
+				TextView textView = (TextView) viewClicked;
+				
+				// TODO Auto-generated method stub
+				
+				int rowcount;
+				
+				Cursor c;
+				//userInfoDB db = new userInfoDB(this);
+				c = db.getContactInformation(Username);
+				rowcount = c.getCount();
+				if ((c != null) && (c.moveToFirst()))
+				{
+					for(int i=0;i<(position+1);i++)
+					{
+						bigContact_Email = c.getString(c.getColumnIndex("Contact_Email"));
+						bigContact_Phone = c.getString(c.getColumnIndex("Contact_Phone"));
+						bigContact_Name = c.getString(c.getColumnIndex("Contact_Name"));
+						c.moveToNext();
+					}
+				}
+				String message = "You clicked #" + position + "which is string" + bigContact_Phone.toString();
+				Toast.makeText(ViewContacts.this, message, Toast.LENGTH_LONG).show();
+			}
+			
+		});
 	}
 
 	@Override
