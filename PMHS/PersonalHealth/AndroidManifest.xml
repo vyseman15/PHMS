@@ -48,7 +48,6 @@
         </activity>
         <activity
             android:name="com.example.personalhealth.DisplayStorageActivity"
-            android:label="@string/title_activity_display_storage"
             android:parentActivityName="com.example.personalhealth.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
