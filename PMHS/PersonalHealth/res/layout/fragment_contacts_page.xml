@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical" >
-        
-        <TextView
-        android:id="@+id/textView2"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    style="@android:style/ButtonBar">
+    <TextView
+       	android:id="@+id/Username_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/username" />
-    </LinearLayout>
+        android:text="@string/Username" />
+    <!-- 
+    <Button
+        android:id="@+id/main_page_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="main_page_click"
+        android:text="@string/main_page" />
+    -->
+    <Button
+        android:id="@+id/add_contact_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"     
+        android:text="@string/add_contact" />
+	</LinearLayout>
+    <ListView 
+        android:id = "@+id/listview1"
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content">
+    </ListView>
     
 
-</ScrollView>
+</LinearLayout>   

@@ -137,5 +137,7 @@
     <string name="Save">Save</string>
     <string name="view_doctors">View Doctors</string>
     <string name="view_appointments">View Appointments</string>
+    <string name="add_contact">Add Contact</string>
+    
 
 </resources>
