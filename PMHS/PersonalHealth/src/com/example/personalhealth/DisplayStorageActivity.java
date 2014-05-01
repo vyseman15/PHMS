@@ -3,6 +3,7 @@ package com.example.personalhealth;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.net.URI;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
@@ -12,6 +13,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.NavUtils;
@@ -37,11 +39,13 @@ import com.example.personalhealth.sqlite.model.Type;
 public class DisplayStorageActivity extends ExpandableListActivity implements
 OnChildClickListener  {
 	
-   static long type1_id = 0;
-   static long type2_id = 0;
-   static long type3_id = 0;
-   String userName;
-   //final Context context = getApplicationContext();
+	 static long type1_id = 0;
+   	 static long type2_id = 0;
+   	 static long type3_id = 0;
+   	 String userName;
+   	 
+
+
 
 	private Button button;
 	//private EditText editTextMainScreen;
@@ -53,7 +57,9 @@ OnChildClickListener  {
     private static final String DATABASE_NAME = "storageManagerNew9";
     // Database Helper
     DatabaseHelper db;
-    //Boolean isTrue = true;
+    
+
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -160,12 +166,13 @@ OnChildClickListener  {
 				final CharSequence[] items = { "Recipe", "Diet", "Article" };
 				alertDialogBuilder
 						.setTitle("Create Diet, Article, or Recipe")
-						.setSingleChoiceItems(items, 0,new DialogInterface.OnClickListener() {
+						.setSingleChoiceItems(items, -1,new DialogInterface.OnClickListener() {
 							public void onClick(DialogInterface dialog, int item) {
 		                        //Toast.makeText(getApplicationContext(), items[item],
-		                        //      Toast.LENGTH_SHORT).show();
+		                              //Toast.LENGTH_SHORT).show();
 								type1_id = item + 1;
-								Toast.makeText(getBaseContext(),"type1_id is" +type1_id, Toast.LENGTH_LONG).show();
+
+								//Toast.makeText(getBaseContext(),"type1_id is" +type1_id, Toast.LENGTH_LONG).show();
 						}
 						})
 						.setCancelable(false)
@@ -176,10 +183,21 @@ OnChildClickListener  {
 										String stringName = inputName.getText().toString();
 										String stringUrl = inputUrl.getText().toString();										
 										Storage store1 = new Storage(stringName, 0,stringUrl,userName);
-								        
+										
+										
 								        long store1_id = db.createStorage(store1, new long[] { type1_id });
-								        
-
+								        if(type1_id == 1)
+								        {
+								        	Toast.makeText(getBaseContext(),"You have entered "+stringName+" to "+ "Recipes", Toast.LENGTH_LONG).show();
+								        }
+								        if(type1_id == 2)
+								        {
+								        	Toast.makeText(getBaseContext(),"You have entered "+stringName+" to "+ "Diets", Toast.LENGTH_LONG).show();
+								        }
+								        if(type1_id == 3)
+								        {
+								        	Toast.makeText(getBaseContext(),"You have entered "+stringName+" to "+ "Articles", Toast.LENGTH_LONG).show();
+								        }
 									}
 								})
 						.setNegativeButton("Cancel",
@@ -197,8 +215,8 @@ OnChildClickListener  {
 			}
 		});
 		
-		
-		
+
+
 		  ExpandableListView expandbleLis = getExpandableListView();
 		  expandbleLis.setDividerHeight(2);
 		  expandbleLis.setGroupIndicator(null);
@@ -212,6 +230,30 @@ OnChildClickListener  {
 		  groupItem.add("Articles");
 		  //Toast.makeText(getBaseContext(),"type3 is " +db.getSingleType("Articles"), Toast.LENGTH_LONG).show();
 		  
+		  setChildGroupData();
+		  
+		NewAdapter mNewAdapter = new NewAdapter(groupItem, childItem);
+		  mNewAdapter
+		    .setInflater(
+		      (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE),
+		      this);
+		  getExpandableListView().setAdapter(mNewAdapter);
+		  expandbleLis.setOnChildClickListener(this);
+		  //expandbleLis.setOnChildClickListener(new NewAdapter(DisplayStorageActivity.this));
+		   
+
+		 
+
+		  
+	    dbWrite(DATABASE_NAME);
+        db.closeDB();
+
+       //context.deleteDatabase(DATABASE_NAME);
+
+      //dbWrite(DATABASE_NAME);
+    }
+
+	 public void setChildGroupData() {
 		  /**
 		   * Add Data For Recipes
 		   */
@@ -219,6 +261,7 @@ OnChildClickListener  {
 
 		  Cursor cR = db.getAllStorageByTypeCursor("Recipes", userName);
 		  int count = cR.getCount();
+		  Log.e("cR ","count: " +count );
 		  if((cR != null) && (cR.moveToFirst()))
 		  {
 			  for(int i = 0; i < count; i++)
@@ -238,6 +281,7 @@ OnChildClickListener  {
 
 		  Cursor cD = db.getAllStorageByTypeCursor("Diets", userName);
 		  int count2 = cD.getCount();
+		  Log.e("cD ","count: " +count2 );
 		  if((cD != null) && (cD.moveToFirst()))
 		  {
 			  for(int i = 0; i < count2; i++)
@@ -255,7 +299,8 @@ OnChildClickListener  {
 		  child = new ArrayList<String>();
 
 		  Cursor cA = db.getAllStorageByTypeCursor("Articles", userName);
-		  int count3 = cD.getCount();
+		  int count3 = cA.getCount();
+		  Log.e("cA ","count: " +count3 );
 		  if((cA != null) && (cA.moveToFirst()))
 		  {
 			  for(int i = 0; i < count3; i++)
@@ -267,94 +312,35 @@ OnChildClickListener  {
 		  }
 		  childItem.add(child);
 
-		 
-		
-		  NewAdapter mNewAdapter = new NewAdapter(groupItem, childItem);
-		  mNewAdapter
-		    .setInflater(
-		      (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE),
-		      this);
-		  getExpandableListView().setAdapter(mNewAdapter);
-		  expandbleLis.setOnChildClickListener(this);
-		 
-	    dbWrite(DATABASE_NAME);
-        db.closeDB();
+	 }
 
-       //context.deleteDatabase(DATABASE_NAME);
-
-      //dbWrite(DATABASE_NAME);
-    }
-
-
-
-	 
-
-	/*
-	 public void setChildGroupData() {
-			Intent intent = getIntent();
-			userName = intent.getStringExtra(Login.EXTRA_MESSAGE);
-		  
-		  // Add Data For Recipes
-		   
-		  ArrayList<String> child = new ArrayList<String>();
-
-		  Cursor cR = db.getAllStorageByTypeCursor("Recipes", userName);
-		  int count = cR.getCount();
-		  if((cR != null) && (cR.moveToFirst()))
-		  {
-			  for(int i = 0; i < count; i++)
-				 {
-			 
-				 child.add(i, cR.getString(cR.getColumnIndex("name")));
-				 cR.moveToNext();
-				 }
-		  }
-
-		  childItem.add(child);
-
-		  
-		   //Add Data For Diets
-		   
-		  child = new ArrayList<String>();
-
-		  Cursor cD = db.getAllStorageByTypeCursor("Diets", userName);
-		  int count2 = cD.getCount();
-		  if((cD != null) && (cD.moveToFirst()))
-		  {
-			  for(int i = 0; i < count2; i++)
-				 {
-			 
-				 child.add(i, cD.getString(cD.getColumnIndex("name")));
-				 cD.moveToNext();
-				 }
-		  }
-
-		  childItem.add(child);
-		  /
-		   //Add Data For Articles
-		   
-		  child = new ArrayList<String>();
-
-		  Cursor cA = db.getAllStorageByTypeCursor("Articles", userName);
-		  int count3 = cD.getCount();
-		  if((cA != null) && (cA.moveToFirst()))
-		  {
-			  for(int i = 0; i < count3; i++)
-				 {
-			 
-				 child.add(i, cA.getString(cA.getColumnIndex("name")));
-				 cA.moveToNext();
-				 }
-		  }
-		  childItem.add(child);
-
-		 }
-	*/
 
 	 @Override
 	 public boolean onChildClick(ExpandableListView parent, View v,
-	   int groupPosition, int childPosition, long id) {
-	  //Toast.makeText(MainActivity.this, "Clicked On Child",Toast.LENGTH_SHORT).show();
+	   int groupPosition, int childPosition, long id) 
+	 {
+		 DatabaseHelper db = new DatabaseHelper(this);
+		 String goUrl = null;
+		 //Log.e("type_Id: "," "+type_Id);
+		 Log.e("userName: ",userName);
+		 Log.e("groupPosition: "," "+groupPosition);
+		 if(groupPosition == 0)
+		 {
+			 goUrl = db.getSingleUrl(1, userName);
+			 startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(goUrl)));
+		 }
+		 else if(groupPosition == 1)
+		 {
+			 goUrl = db.getSingleUrl(2, userName);
+			 startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(goUrl)));
+		 }
+		 else if(groupPosition == 2)
+		 {
+			 goUrl = db.getSingleUrl(3, userName);
+			 startActivity(new Intent(Intent.ACTION_VIEW,Uri.parse(goUrl)));
+		 }
+		 Log.e("URL: ",goUrl);
+		 Toast.makeText(getApplicationContext(),"You made it!", Toast.LENGTH_LONG).show();
 	  return true;
 	 }
 	

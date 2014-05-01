@@ -84,6 +84,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
+            <EditText
+                android:id="@+id/MedDosage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="8"
+                android:inputType="number" />
+
             <TextView
                 android:id="@+id/NewMed2DoseText"
                 android:layout_width="wrap_content"
@@ -91,12 +98,6 @@
                 android:text="Dose Size"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
-            <EditText
-                android:id="@+id/MedDosage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="8"
-                android:inputType="number" />
         </LinearLayout>
 
         <TextView
@@ -178,6 +179,13 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal" >
 
+            <EditText
+                android:id="@+id/KnownConflict"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Seperate by \ncommas" />
+
             <TextView
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
@@ -185,12 +193,6 @@
                 android:text="Known \nConflicts"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
 
-            <EditText
-                android:id="@+id/KnownConflict"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Seperate by \ncommas" />
         </LinearLayout>
 
         <Button

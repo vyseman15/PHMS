@@ -218,7 +218,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     
     /*
-     * getting all storage under single type by single username String
+     * getting all storage under single type by single username return Cursor
      * */
     public Cursor getAllStorageByTypeCursor(String type_name, String userName_Id) {
 
@@ -234,7 +234,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery(selectQuery, null);
-     
+        c.moveToFirst(); 
    
           return c;
     }
@@ -325,9 +325,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return types;
     }
     
-    /**
+    /**Kept for reference
      * getting single type String
      * */
+    /*
     public String getSingleType(String typeName_Id) {
         //ArrayList<String> types = new ArrayList<String>();
     	String type = null;
@@ -341,7 +342,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor c = db.rawQuery(selectQuery, null);
         if(typeName_Id == "Recipes")
         {
-        	if (c.moveToPosition(0))
+        	if (c.moveToPosition(1))
         	{
             type = (c.getString(c.getColumnIndex(KEY_TYPE_NAME)));
             return type;
@@ -350,7 +351,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         if(typeName_Id == "Diets")
         {
-        	if (c.moveToPosition(1))
+        	if (c.moveToPosition(2))
         	{
             type = (c.getString(c.getColumnIndex(KEY_TYPE_NAME)));
             return type;
@@ -359,7 +360,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         if(typeName_Id == "Articles")
         {
-        	if (c.moveToPosition(2))
+        	if (c.moveToPosition(3))
         	{
             type = (c.getString(c.getColumnIndex(KEY_TYPE_NAME)));
             return type;
@@ -369,8 +370,33 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return type;
     }
+    */
     
+    /**
+     * getting single Url String by username and type
+     * */
+    public String getSingleUrl(int type_Id, String userName_Id) {
+        //ArrayList<String> types = new ArrayList<String>();
+    	String url = null;
+    	
+        String selectQuery = "SELECT * FROM " + TABLE_STORAGE + " st, "
+                + TABLE_TYPE + " ty, " + TABLE_STORAGE_TYPE + " sy WHERE sy."
+                + KEY_TYPE_ID + " = '" + type_Id + "'" +
+                " AND st."+ KEY_USER + " = '" + userName_Id + "'" +
+                " AND sy."+ KEY_STORAGE_ID + " = " + "st." + KEY_ID +
+                " AND ty." + KEY_ID + " = " + "sy." + KEY_TYPE_ID + 
+                " AND st." + KEY_ID + " = " + "sy." + KEY_STORAGE_ID;
+     
+     
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+		  if((c != null) && (c.moveToFirst()))
+		  {
+			  url = (c.getString(c.getColumnIndex(KEY_URL)));
+		  }
 
+        return url;
+    }
     /*
      * Updating a type
      */
@@ -421,9 +447,22 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_CREATED_AT, getDateTime());
  
         long id = db.insert(TABLE_STORAGE_TYPE, null, values);
+        return id;
+    }
+    
+    /*
+     * Creating storage_type id
+     */
+    /*
+    public long createStorageTypeId(long storage_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+ 
+ 
+        long id = storage_id;
  
         return id;
     }
+    */
     
     /*
      * Updating a storage type
