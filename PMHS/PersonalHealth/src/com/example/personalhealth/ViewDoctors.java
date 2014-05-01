@@ -72,8 +72,9 @@ public class ViewDoctors extends Activity {
 			{
 				Doctor_Name = c.getString(c.getColumnIndex("Doctor_Name"));
 				Doctor_Email = c.getString(c.getColumnIndex("Doctor_Email"));
+				Doctor_Type = c.getString(3);
 				Doctor_Phone = c.getString(c.getColumnIndex("Doctor_Phone"));
-				Doctor_Type = c.getString(c.getColumnIndex("Doctor_Type"));
+				
 				c.moveToNext();
 				
 				
@@ -84,13 +85,13 @@ public class ViewDoctors extends Activity {
 				
 			    
 				dataBreaker=String.valueOf(Doctor_Name);
-			    indivData=indivData.concat("Doctor_Name: "+dataBreaker+"\n");
+			    indivData=indivData.concat("Doctor Name: "+dataBreaker+"\n");
 			    dataBreaker=String.valueOf(Doctor_Email);
-			    indivData=indivData.concat("Doctor_Email: "+dataBreaker+"\n");
+			    indivData=indivData.concat("Doctor Email: "+dataBreaker+"\n");
 			    dataBreaker=String.valueOf(Doctor_Phone);
-			    indivData=indivData.concat("Doctor_Phone: "+dataBreaker+"\n");
+			    indivData=indivData.concat("Doctor Phone: "+dataBreaker+"\n");
 			    dataBreaker=String.valueOf(Doctor_Type);
-			    indivData=indivData.concat("Doctor_Type: "+dataBreaker+"\n");
+			    indivData=indivData.concat("Doctor Type: "+dataBreaker+"\n");
 	
 			    dataall[i]=indivData;
 				

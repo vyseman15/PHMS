@@ -67,7 +67,7 @@ public class AddNewDoctor extends Activity {
 		
 		
 		EditText Doctor_type_text = (EditText)findViewById(R.id.Doctor_Type);
-		String Doctor_Type = Doctor_Phone_text.getText().toString();
+		String Doctor_Type = Doctor_type_text.getText().toString();
 		if(Doctor_Type == null || Doctor_Type.equals(""))
 		{
 			Doctor_type_text.setError("Doctor Type is Required");
